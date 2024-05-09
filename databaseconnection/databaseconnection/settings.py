@@ -74,18 +74,17 @@ WSGI_APPLICATION = 'databaseconnection.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# Connection Code For MySQl (Xaamp)
+# Connection Code For MySQl (Xaamp).
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'django',
 #         'USER': 'root',
-#         'PASSWORD': '',  # Assuming the root user has no password
+#         'PASSWORD': '', 
 #         'HOST': 'localhost',
 #         'PORT': '3306',
 #     }
 # }
-
 
 # Connection Code For MongoDB
 DATABASES = {
