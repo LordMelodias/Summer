@@ -1,0 +1,232 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block body %} 
+
+<section id="places">
+
+    <div class="container">
+      <div class="row flex-md-center">
+        <div class="col-lg-12">
+          <div class="carousel slide" id="carouselExampleControlsNoTouching" data-bs-touch="false" data-bs-interval="false">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row h-100 gx-3">
+                  <div class="col-md-3 mb-3 mb-md-5">
+                    <div class="card h-100 text-white hover-top"><img class="img-fluid h-100" src="{% static 'assets/img/gallery/maldives.png' %}" alt="" />
+                      <div class="card-img-overlay ps-0 d-flex flex-column justify-content-between bg-dark-gradient">
+                        <div class="pt-3"><span class="badge bg-primary">$860</span></div>
+                        <div class="ps-3 d-flex justify-content-between align-items-center">
+                          <h5 class="text-white">Maldives</h5>
+                          <h6 class="text-600">3 days</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3 mb-md-5">
+                    <div class="card h-100 text-white hover-top"><img class="img-fluid h-100" src="{% static 'assets/img/gallery/indonesia.png' %}" alt="" />
+                      <div class="card-img-overlay ps-0 d-flex flex-column justify-content-between bg-dark-gradient">
+                        <div class="pt-3"><span class="badge bg-primary">$860</span></div>
+                        <div class="ps-3 d-flex justify-content-between align-items-center">
+                          <h5 class="text-white">Indonesia</h5>
+                          <h6 class="text-600">7 days</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3 mb-md-5">
+                    <div class="card h-100 text-white hover-top"><img class="img-fluid h-100" src="{% static 'assets/img/gallery/beaches.png' %}" alt="" />
+                      <div class="card-img-overlay ps-0 d-flex flex-column justify-content-between bg-dark-gradient">
+                        <div class="pt-3"><span class="badge bg-primary">$860</span></div>
+                        <div class="ps-3 d-flex justify-content-between align-items-center">
+                          <h5 class="text-white">Goa</h5>
+                          <h6 class="text-600">7 days</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3 mb-md-5">
+                    <div class="card h-100 text-white hover-top"><img class="img-fluid h-100" src="{% static 'assets/img/gallery/india-kashmir.jpg' %}" alt="" />
+                      <div class="card-img-overlay ps-0 d-flex flex-column justify-content-between bg-dark-gradient">
+                        <div class="pt-3"><span class="badge bg-primary">$460</span></div>
+                        <div class="ps-3 d-flex justify-content-between align-items-center">
+                          <h5 class="text-white">Kashmir</h5>
+                          <h6 class="text-600">7 days</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3 mb-md-5">
+                    <div class="card h-100 text-white hover-top"><img class="img-fluid h-100" src="{% static 'assets/img/gallery/srilanka.jpg' %}" alt="" />
+                      <div class="card-img-overlay ps-0 d-flex flex-column justify-content-between bg-dark-gradient">
+                        <div class="pt-3"><span class="badge bg-primary">$560</span></div>
+                        <div class="ps-3 d-flex justify-content-between align-items-center">
+                          <h5 class="text-white">Srilanka</h5>
+                          <h6 class="text-600">7 days</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3 mb-md-5">
+                    <div class="card h-100 text-white hover-top"><img class="img-fluid h-100" src="{% static 'assets/img/gallery/tanzania.png' %}" alt="" />
+                      <div class="card-img-overlay ps-0 d-flex flex-column justify-content-between bg-dark-gradient">
+                        <div class="pt-3"><span class="badge bg-primary">$540</span></div>
+                        <div class="ps-3 d-flex justify-content-between align-items-center">
+                          <h5 class="text-white">Tanzania</h5>
+                          <h6 class="text-600">5 days</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3 mb-md-5">
+                    <div class="card h-100 text-white hover-top"><img class="img-fluid h-100" src="{% static 'assets/img/gallery/wild.png' %}" alt="" />
+                      <div class="card-img-overlay ps-0 d-flex flex-column justify-content-between bg-dark-gradient">
+                        <div class="pt-3"><span class="badge bg-primary">$540</span></div>
+                        <div class="ps-3 d-flex justify-content-between align-items-center">
+                          <h5 class="text-white">Africa</h5>
+                          <h6 class="text-600">5 days</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3 mb-md-5">
+                    <div class="card h-100 text-white hover-top"><img class="img-fluid h-100" src="{% static 'assets/img/gallery/kathmandu.png' %}" alt="" />
+                      <div class="card-img-overlay ps-0 d-flex flex-column justify-content-between bg-dark-gradient">
+                        <div class="pt-3"><span class="badge bg-primary">$340</span></div>
+                        <div class="ps-3 d-flex justify-content-between align-items-center">
+                          <h5 class="text-white">Kathmandu</h5>
+                          <h6 class="text-600">5 days</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row h-100">
+                  <div class="col-md-3 mb-3 mb-md-5">
+                    <div class="card h-100 text-white hover-top"><img class="img-fluid h-100" src="{% static 'assets/img/gallery/china.jpg' %}" alt="" />
+                      <div class="card-img-overlay ps-0 d-flex flex-column justify-content-between bg-dark-gradient">
+                        <div class="pt-3"><span class="badge bg-primary">$740</span></div>
+                        <div class="ps-3 d-flex justify-content-between align-items-center">
+                          <h5 class="text-white">China</h5>
+                          <h6 class="text-600">5 days</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3 mb-md-5">
+                    <div class="card h-100 text-white hover-top"><img class="img-fluid h-100" src="{% static 'assets/img/gallery/wild.png' %}" alt="" />
+                      <div class="card-img-overlay ps-0 d-flex flex-column justify-content-between bg-dark-gradient">
+                        <div class="pt-3"><span class="badge bg-primary">$540</span></div>
+                        <div class="ps-3 d-flex justify-content-between align-items-center">
+                          <h5 class="text-white">Africa</h5>
+                          <h6 class="text-600">5 days</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3 mb-md-5">
+                    <div class="card h-100 text-white hover-top"><img class="img-fluid h-100" src="{% static 'assets/img/gallery/bali.jpg' %}" alt="" />
+                      <div class="card-img-overlay ps-0 d-flex flex-column justify-content-between bg-dark-gradient">
+                        <div class="pt-3"><span class="badge bg-primary">$540</span></div>
+                        <div class="ps-3 d-flex justify-content-between align-items-center">
+                          <h5 class="text-white">Bali</h5>
+                          <h6 class="text-600">5 days</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3 mb-md-5">
+                    <div class="card h-100 text-white hover-top"><img class="img-fluid h-100" src="{% static 'assets/img/gallery/indonesia.png' %}" alt="" />
+                      <div class="card-img-overlay ps-0 d-flex flex-column justify-content-between bg-dark-gradient">
+                        <div class="pt-3"><span class="badge bg-primary">$540</span></div>
+                        <div class="ps-3 d-flex justify-content-between align-items-center">
+                          <h5 class="text-white">Indonesia</h5>
+                          <h6 class="text-600">5 days</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3 mb-md-5">
+                    <div class="card h-100 text-white hover-top"><img class="img-fluid h-100" src="{% static 'assets/img/gallery/mumbai.jpg' %}" alt="" />
+                      <div class="card-img-overlay ps-0 d-flex flex-column justify-content-between bg-dark-gradient">
+                        <div class="pt-3"><span class="badge bg-primary">$540</span></div>
+                        <div class="ps-3 d-flex justify-content-between align-items-center">
+                          <h5 class="text-white">Mumbai</h5>
+                          <h6 class="text-600">5 days</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3 mb-md-5">
+                    <div class="card h-100 text-white hover-top"><img class="img-fluid h-100" src="{% static 'assets/img/gallery/italy.png' %}" alt="" />
+                      <div class="card-img-overlay ps-0 d-flex flex-column justify-content-between bg-dark-gradient">
+                        <div class="pt-3"><span class="badge bg-primary">$540</span></div>
+                        <div class="ps-3 d-flex justify-content-between align-items-center">
+                          <h5 class="text-white">Italy</h5>
+                          <h6 class="text-600">8 days</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3 mb-md-5">
+                    <div class="card h-100 text-white hover-top"><img class="img-fluid h-100" src="{% static 'assets/img/gallery/kathmandu.png' %}" alt="" />
+                      <div class="card-img-overlay ps-0 d-flex flex-column justify-content-between bg-dark-gradient">
+                        <div class="pt-3"><span class="badge bg-primary">$640</span></div>
+                        <div class="ps-3 d-flex justify-content-between align-items-center">
+                          <h5 class="text-white">Kathmandu</h5>
+                          <h6 class="text-600">6 days</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row h-100">
+                  <div class="col-md-3 mb-3 mb-md-5">
+                    <div class="card h-100 text-white hover-top"><img class="img-fluid h-100" src="{% static 'assets/img/gallery/kathmandu.png' %}" alt="" />
+                      <div class="card-img-overlay ps-0 d-flex flex-column justify-content-between bg-dark-gradient">
+                        <div class="pt-3"><span class="badge bg-primary">$540</span></div>
+                        <div class="ps-3 d-flex justify-content-between align-items-center">
+                          <h5 class="text-white">Kathmandu</h5>
+                          <h6 class="text-600">5 days</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3 mb-md-5">
+                    <div class="card h-100 text-white hover-top"><img class="img-fluid h-100" src="{% static 'assets/img/gallery/maldives.png' %}" alt="" />
+                      <div class="card-img-overlay ps-0 d-flex flex-column justify-content-between bg-dark-gradient">
+                        <div class="pt-3"><span class="badge bg-primary">$860</span></div>
+                        <div class="ps-3 d-flex justify-content-between align-items-center">
+                          <h5 class="text-white">Maldives</h5>
+                          <h6 class="text-600">3 days</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-3 mb-3 mb-md-5">
+                    <div class="card h-100 text-white hover-top"><img class="img-fluid h-100" src="{% static 'assets/img/gallery/indonesia.png' %}" alt="" />
+                      <div class="card-img-overlay ps-0 d-flex flex-column justify-content-between bg-dark-gradient">
+                        <div class="pt-3"><span class="badge bg-primary">$860</span></div>
+                        <div class="ps-3 d-flex justify-content-between align-items-center">
+                          <h5 class="text-white">Indonesia</h5>
+                          <h6 class="text-600">7 days</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="position-relative mt-5"><a class="carousel-control-prev carousel-icon z-index-2" href="#carouselExampleControlsNoTouching" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></a><a class="carousel-control-next carousel-icon z-index-2" href="#carouselExampleControlsNoTouching" role="button" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of .container-->
+  </section>
+
+  {% endblock body %}
