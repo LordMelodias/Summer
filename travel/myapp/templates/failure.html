@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Failure</title>
+    <link rel="stylesheet" href="{% static 'assets/css/login_register.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="logo">
+            <img src="{% static 'assets/img/gallery/logo-icon.png' %}" alt="">
+        </div>
+        <div class="text-center mt-4 name" align="center">
+            Invalid! there are some issue on server<br>
+            <span style="color: red;">Please try again</span>
+        </div>
+        <form class="p-3 mt-3" >
+            <button class="btn mt-3">Login</button>
+        </form>
+       
+    </div>
+</body>
+</html>
