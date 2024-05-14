@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block body %}
+
+<main id="main">
+    <section id="contact" class="section-bg wow fadeInUp">
+        <div class="container">
+            <div class="section-header">
+                <h2 align="center">Contact Us</h2>
+            </div>
+
+            <div class="row contact-info">
+                <div class="col-md-4">
+                    <div class="contact-address">
+                        <i class="ion-ios-location-outline"></i>
+                        <h3>Address</h3>
+                        <address>Ram Society Near Nadco SV Road, Andheri (W)</address>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="contact-phone">
+                        <i class="ion-ios-telephone-outline"></i>
+                        <h3>Phone Number</h3>
+                        <p><a href="tel:+155895548855">022 2550 3125</a></p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="contact-email">
+                        <i class="ion-ios-email-outline"></i>
+                        <h3>Email</h3>
+                        <p><a href="mailto:valiacollege.6@gmail.com">valiacollege.6@gmail.com</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form">
+                <form action="/contact" method="post" role="form" class="contactForm">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required />
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-lg btn-outline-primary order-0" type="submit">Send Message</button>
+                    </div>
+                </form>
+            </div>
+            {% if error_message %}
+            <div class="alert alert-danger mt-3" role="alert">
+                {{ error_message }}
+            </div>
+            {% endif %}
+        </div>
+    </section>
+</main>
+
+{% endblock %}
