@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Successful</title>
+    <link rel="stylesheet" href="{% static 'assets/css/login_register.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="logo">
+            <img src="{% static 'assets/img/gallery/logo-icon.png' %}" alt="">
+        </div><br>
+        <div class="text-center mt-4 name" align="center">
+            Thank you for Register in Rohit Travel!.<br>
+            <span style="color: green;">You Can Login Now</span>
+        </div><br><br>
+        <form class="p-3 mt-3" action="{% url 'login' %}">
+            <button class="btn mt-3">Login</button>
+        </form>
+       
+    </div>
+</body>
+</html>
