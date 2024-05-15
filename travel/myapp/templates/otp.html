@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <link rel="stylesheet" href="{% static 'assets/css/login_register.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="logo">
+            <img src="{% static 'assets/img/gallery/logo-icon.png' %}" alt="">
+        </div><br>
+        <div class="text-center mt-4 name" align="center">
+            Thank you for registering with Rohit Travel!<br>
+            <span style="color: green;">You can now login.</span>
+        </div><br><br>
+        <form class="p-3 mt-3" action="{% url 'otp' email=email %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="email" value="{{ email }}">
+            <input type="text" name="otp" pattern="[0-9]{6}" title="OTP must be exactly 6 digits" placeholder="Enter OTP" required>
+            <button type="submit" class="btn mt-3">Verify OTP</button>
+        </form>
+        {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
