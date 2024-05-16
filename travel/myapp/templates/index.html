@@ -11,7 +11,16 @@
           <div class="row align-items-center min-vh-75 my-lg-8">
             <div class="col-md-7 col-lg-6 text-center text-md-start py-8">
               <h1 class="mb-4 display-1 lh-sm">Travel around <br class="d-block d-lg-none d-xl-block" />the world</h1>
-              <p class="mt-4 mb-5 fs-1 lh-base">Plan and book your perfect trip with expert advice, <br class="d-none d-lg-block" />travel tips, destination information and <br class="d-none d-lg-block" />inspiration from us.</p><a class="btn btn-lg btn-primary hover-top" href="#" role="button">Sign Up Now</a>
+              <p class="mt-4 mb-5 fs-1 lh-base">Plan and book your perfect trip with expert advice, <br class="d-none d-lg-block" />travel tips, destination information and <br class="d-none d-lg-block" />inspiration from us.</p>
+              {% if user.is_authenticated %}
+              <h4 class="mb-4 display-6 lh-sm">
+                Welcome, {{ user.username|upper }}!
+              </h4>
+            {% else %}
+                <form class="ps-lg-5" action="{% url 'login' %}">
+                  <button class="btn btn-lg btn-primary hover-top" type="submit" role="button">Sign In</button>
+                </form>
+            {% endif %}
             </div>
           </div>
         </div>
@@ -153,106 +162,6 @@
 
       <!-- ============================================-->
       <!-- <section> begin ============================-->
-      <section class="pt-5" id="featuresVideos">
-
-        <div class="container">
-          <div class="row flex-center mb-5">
-            <div class="col-lg-8 text-center">
-              <h1 class="fw-bold fs-md-3 fs-lg-4 fs-xl-5">Featured videos</h1>
-              <hr class="mx-auto text-primary my-4" style="height:3px; width:70px;" />
-              <p class="mx-auto">Aliquam sodales vitae ex tincidunt consectetur. Etiam eleifend malesuada magna, at imperdiet justo euismod eu. Aliquam vel imperdet mi, et convallis eros. Duis fermentum fringilla nisl at vulputate. Nunc nec lorem faucibus, molestie nisi id, elementum sem. Sed vulputate tempor augue a efficitur urna, ultrices eu. Duis vel turpis et arcu.</p>
-            </div>
-          </div>
-          <div class="row flex-center">
-            <div class="col-12">
-              <div class="carousel slide" id="carouselExampleIndicators" data-bs-touch="false" data-bs-interval="false">
-                <div class="row align-items-center">
-                  <div class="col-12 col-xxl-7 px-2">
-                    <div class="carousel-inner">
-                      <div class="carousel-item active h-100">
-                        <div class="player" data-plyr-provider="youtube" data-plyr-embed-id="bTqVqk7FSmY">
-                          <iframe src="https://www.youtube.com/embed/zLeLttVbFs8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <div class="player" data-plyr-provider="youtube" data-plyr-embed-id="bTqVqk7FSmY">
-                          <iframe src="https://www.youtube.com/embed/nUI8f_hvKZw" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <div class="player" data-plyr-provider="youtube" data-plyr-embed-id="bTqVqk7FSmY">
-                          <iframe src="https://www.youtube.com/embed/xf86EzuLXu0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <div class="player" data-plyr-provider="youtube" data-plyr-embed-id="bTqVqk7FSmY">
-                          <iframe src="https://www.youtube.com/embed/YkEd_aorIiI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6 col-md-3 col-xxl-2 pt-3 pt-md-0">
-                    <div class="carousel-indicators">
-                      <div class="row h-100 w-100">
-                        <div class="col-12 px-1">
-                          <button class="active" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1"><img class="d-block" src="{% static 'assets/img/gallery/maldives-v.png' %}" alt="..." /></button>
-                        </div>
-                        <div class="col-12 px-1">
-                          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"><img class="d-block" src="{% static 'assets/img/gallery/tanzania.png' %}" alt="..." /></button>
-                        </div>
-                        <div class="col-12 px-1">
-                          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"><img class="d-block" src="{% static 'assets/img/gallery/kathmandu-v.png' %}" alt="..." /></button>
-                        </div>
-                        <div class="col-12 px-1">
-                          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"><img class="d-block" src="{% static 'assets/img/gallery/chaina.png' %}" alt="..." /></button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-6 col-lg-3 px-xxl-0">
-                    <div class="row">
-                      <div class="col-12 col-md-11 col-lg-12 col-xl-10 col-xxl-7 px-xxl-0 ps-lg-0 ps-md-4">
-                        <div class="card h-100 py-md-2 active" style="min-height:113px">
-                          <div class="card-body d-flex flex-column justify-content-center">
-                            <p class="mb-0 fw-semi-bold text-dark"> When go to maldives</p>
-                            <p class="card-text"><small class="text-800">0.20</small></p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-12 col-md-11 col-lg-12 col-xl-10 col-xxl-7 px-xxl-0 ps-lg-0 ps-md-4">
-                        <div class="card h-100 py-md-2" style="min-height:113px">
-                          <div class="card-body d-flex flex-column justify-content-center">
-                            <p class="mb-0 fw-semi-bold text-500">Tanzania’s deadly pink lake</p>
-                            <p class="card-text"><small class="text-800">05.24</small></p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-12 col-md-11 col-lg-12 col-xl-10 col-xxl-7 px-xxl-0 ps-lg-0 ps-md-4">
-                        <div class="card h-100 py-md-2" style="min-height:113px">
-                          <div class="card-body d-flex flex-column justify-content-center">
-                            <p class="mb-0 fw-semi-bold text-500"> Top things to do in Kathmandu</p>
-                            <p class="card-text"><small class="text-800">06.12</small></p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-12 col-md-11 col-lg-12 col-xl-10 col-xxl-7 px-xxl-0 ps-lg-0 ps-md-4">
-                        <div class="card h-100 py-md-3" style="min-height:113px">
-                          <div class="card-body d-flex flex-column justify-content-center">
-                            <p class="mb-0 fw-semi-bold text-500"> Exploring China’s creative capital</p>
-                            <p class="card-text"><small class="text-800">0.20 </small></p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- end of .container-->
-
-      </section>
       <!-- <section> close ============================-->
       <!-- ============================================-->
 
@@ -521,50 +430,7 @@
       <!-- <section> close ============================-->
       <!-- ============================================-->
 
-      <section id="booking">
-        <div class="bg-holder" style="background-image:url('/static/assets/img//gallery/booking.png');background-position:center;background-size:cover;">
-        </div>
-        <!--/.bg-holder-->
-        <div class="container">
-          <div class="row">
-            <div class="col-12 py-8 text-white">
-              <div class="d-flex flex-column flex-center">
-                <h2 class="text-white fs-2 fs-md-3">WE WILL SEE YOU</h2>
-                <h1 class="text-white fs-2 fs-sm-4 fs-lg-7 fw-bold">Enjoy 30% Off On First Trip</h1>
-              </div>
-              <form class="row gy-2 gx-md-2 gx-lg-4 flex-center my-6">
-                <div class="col-6 col-md-3">
-                  <label class="visually-hidden" for="inlineFormSelectPref">Destinations</label>
-                  <select class="form-select" id="inlineFormSelectPref">
-                    <option selected="">Destinations</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
-                </div>
-                <div class="col-6 col-md-3">
-                  <label class="visually-hidden" for="autoSizingSelect">Package</label>
-                  <select class="form-select" id="autoSizingSelect">
-                    <option selected="">Package</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
-                </div>
-                <div class="col-6 col-md-3">
-                  <label class="visually-hidden" for="date">Date</label>
-                  <div class="input-group">
-                    <input class="form-control" id="date" type="date" />
-                  </div>
-                </div>
-                <div class="col-6 col-md-auto">
-                  <button class="btn btn-lg btn-primary" type="submit">Book Now</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       <!-- ============================================-->
       <!-- <section> begin ============================-->
