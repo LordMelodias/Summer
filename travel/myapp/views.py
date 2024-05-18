@@ -53,3 +53,6 @@ def login_view(request):
 def user_logout(request):
     logout(request)
     return redirect('home')  # Redirect to the homepage or any other page after logout
+
+def register(request):
+    return render(request, 'register.html')
