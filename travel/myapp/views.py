@@ -7,3 +7,5 @@ def index(request):
 def destination(request):
     return render(request, 'destination.html')
 
+def video(request):
+    return render(request, 'video.html')
