@@ -9,3 +9,6 @@ def destination(request):
 
 def video(request):
     return render(request, 'video.html')
+
+def booking(request):
+    return render(request, 'booking.html')
