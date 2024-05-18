@@ -50,3 +50,6 @@ def login_view(request):
             return render(request, "login.html", {'error_message': error_message})
     return render(request, "login.html")
 
+def user_logout(request):
+    logout(request)
+    return redirect('home')  # Redirect to the homepage or any other page after logout
