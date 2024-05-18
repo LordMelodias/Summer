@@ -12,3 +12,6 @@ def video(request):
 
 def booking(request):
     return render(request, 'booking.html')
+
+def login(request):
+    return render(request, 'login.html')
