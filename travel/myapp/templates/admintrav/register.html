@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'assets/css/theme.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/login_register.css' %}">
+</head>
+<body>
+    <section class="vh-100">
+        <div class="container py-5 h-100">
+          <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                class="img-fluid" alt="Phone image">
+            </div>
+            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+              <form action="" method="post">
+                {% csrf_token %}
+                <!-- Username Input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="text" id="name" class="form-control form-control-lg" name="name" placeholder="Username" required/>    
+                </div>
+
+                <!-- Email input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                  <input type="email" id="email" class="form-control form-control-lg" name="email" placeholder="Email" required/> 
+                </div>
+      
+                <!-- Password input -->
+                <div data-mdb-input-init class="form-outline mb-4">
+                  <input type="password" id="password" class="form-control form-control-lg" name="password1" placeholder="Password" onkeyup="this.setAttribute('value', this.value);" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required/>
+                </div>
+                
+                <div data-mdb-input-init class="form-outline mb-4">
+                    <input type="password" id="password2" class="form-control form-control-lg" name="password2" placeholder="Repeat Password" required/>
+                  </div>
+      
+                <div class="d-flex justify-content-around align-items-center mb-4">
+                  <!-- Checkbox -->
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
+                    <label class="form-check-label" for="form1Example3"> Remember me </label>
+                  </div>
+                </div>
+      
+                <!-- Submit button -->
+                <div style="padding-left: 11.5rem;">
+                <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block">Sign Up</button>
+                </div>
+              </form><br>
+              <div style="padding-left: 2rem;" align="center">
+                <a style="color: #917c55;" href="{% url 'adminlog' %}">Sign In</a>
+            </div>
+            </div>
+          </div>
+          {% if error_message %}
+          <div class="alert alert-danger mt-3" role="alert">
+              {{ error_message }}
+          </div>
+          {% endif %}
+        </div>
+      </section>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          var form = document.getElementById("registerForm");
+          form.addEventListener("submit", function(event) {
+            console.log("Form submitted");
+            
+            var password1 = document.getElementById("password").value;
+            var password2 = document.getElementById("password2").value;
+            var pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+      
+            console.log("Password 1:", password1);
+            console.log("Password 2:", password2);
+            
+            if (!pattern.test(password1)) {
+              event.preventDefault();
+              console.log("Password pattern does not match!");
+              alert("Password pattern does not match! Password must contain at least one digit, one lowercase and one uppercase letter, and be at least 8 characters long.");
+            } else if (password1 !== password2) {
+              event.preventDefault();
+              console.log("Passwords do not match!");
+              alert("Passwords do not match!");
+            }
+          });
+        });
+    </script>
+</body>
+</html>
