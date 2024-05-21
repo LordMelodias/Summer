@@ -17,7 +17,7 @@
                 class="img-fluid" alt="Phone image">
             </div>
             <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-              <form action="" method="post">
+              <form action="{% url 'saveadminreg' %}" method="post">
                 {% csrf_token %}
                 <!-- Username Input -->
                 <div data-mdb-input-init class="form-outline mb-4">
@@ -63,30 +63,5 @@
           {% endif %}
         </div>
       </section>
-      <script>
-        document.addEventListener("DOMContentLoaded", function() {
-          var form = document.getElementById("registerForm");
-          form.addEventListener("submit", function(event) {
-            console.log("Form submitted");
-            
-            var password1 = document.getElementById("password").value;
-            var password2 = document.getElementById("password2").value;
-            var pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-      
-            console.log("Password 1:", password1);
-            console.log("Password 2:", password2);
-            
-            if (!pattern.test(password1)) {
-              event.preventDefault();
-              console.log("Password pattern does not match!");
-              alert("Password pattern does not match! Password must contain at least one digit, one lowercase and one uppercase letter, and be at least 8 characters long.");
-            } else if (password1 !== password2) {
-              event.preventDefault();
-              console.log("Passwords do not match!");
-              alert("Passwords do not match!");
-            }
-          });
-        });
-    </script>
 </body>
 </html>
