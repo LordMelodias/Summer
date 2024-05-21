@@ -17,16 +17,17 @@
                 class="img-fluid" alt="Phone image">
             </div>
             <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-              <form>
+              <form action="{% url 'loginview1' %}" method="post">
+                {% csrf_token %}
                 <!-- Email input -->
                 <div data-mdb-input-init class="form-outline mb-4">
-                  <input type="email" id="form1Example13" class="form-control form-control-lg"  placeholder="Email" required/>
+                  <input type="email" id="form1Example13" class="form-control form-control-lg" name="email"  placeholder="Email" required/>
                   
                 </div>
       
                 <!-- Password input -->
                 <div data-mdb-input-init class="form-outline mb-4">
-                  <input type="password" id="form1Example23" class="form-control form-control-lg" placeholder="Password" required/>
+                  <input type="password" id="form1Example23" class="form-control form-control-lg" name="password" placeholder="Password" required/>
                 </div>
       
                 <div class="d-flex justify-content-around align-items-center mb-4">
@@ -42,7 +43,15 @@
                 <div style="padding-left: 11.5rem;">
                 <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block">Sign in</button>
                 </div>
-              </form>
+              </form><br>
+              <div style="padding-left: 2rem;" align="center">
+                <a style="color: #917c55;" href="{% url 'adminreg' %}">Sign Up</a>
+            </div>
+            {% if error_message %}
+            <div class="alert alert-danger mt-3" role="alert">
+                {{ error_message }}
+            </div>
+            {% endif %}
             </div>
           </div>
         </div>
