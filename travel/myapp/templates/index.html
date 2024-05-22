@@ -12,7 +12,7 @@
             <div class="col-md-7 col-lg-6 text-center text-md-start py-8">
               <h1 class="mb-4 display-1 lh-sm">Travel around <br class="d-block d-lg-none d-xl-block" />the world</h1>
               <p class="mt-4 mb-5 fs-1 lh-base">Plan and book your perfect trip with expert advice, <br class="d-none d-lg-block" />travel tips, destination information and <br class="d-none d-lg-block" />inspiration from us.</p>
-              {% if user.is_authenticated %}
+              {% if request.session.phone %}
               <h4 class="mb-4 display-6 lh-sm">
                 Welcome, {{ user.username|upper }}!
               </h4>
