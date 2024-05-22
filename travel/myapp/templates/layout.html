@@ -6,14 +6,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
     <!-- ===============================================-->
     <!--    Document Title-->
     <!-- ===============================================-->
     <title>Rohit Travel</title>
     <!-- ===============================================-->
     <!--    Favicons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- ===============================================-->
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/favicons/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/img/favicons/favicon-32x32.png' %}">
@@ -23,10 +22,10 @@
     <meta name="msapplication-TileImage" content="{% static 'assets/img/favicons/mstile-150x150.png' %}">
     <meta name="theme-color" content="#ffffff">
 
-
     <!-- ===============================================-->
     <!--    Stylesheets-->
     <!-- ===============================================-->
+    <link rel="stylesheet" href="{% static 'assets/css/login_register.css' %}">
     <link href="{% static 'vendors/plyr/plyr.css' %}" rel="stylesheet">
     <link href="{% static 'assets/css/theme.css' %}" rel="stylesheet" />
   </head>
@@ -37,17 +36,25 @@
     <main class="main" id="top">
       <nav class="navbar navbar-expand-lg fixed-top py-3 backdrop" data-navbar-on-scroll="data-navbar-on-scroll">
         <div class="container"><a class="navbar-brand d-flex align-items-center fw-bold fs-2" href="#"> <img class="d-inline-block align-top img-fluid" src="{% static 'assets/img/gallery/logo-icon.png' %}" alt="" width="50" /><span class="text-primary fs-4 ps-2">Rohit</span></a>
-          <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto pt-2 pt-lg-0">
               <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a></li>
-              <li class="nav-item"><a class="nav-link text-600" href="#featuresVideos">Video</a></li>
-              <li class="nav-item"><a class="nav-link text-600" href="{% url 'destination' %}">Destinations</a></li>
-              <li class="nav-item"><a class="nav-link text-600" href="#booking">Booking </a></li>
+              <li class="nav-item"><a class="nav-link text-600" href="{% url 'video' %}">Video</a></li>
+              <li class="nav-item"><a class="nav-link text-600" href="{% url 'destination' %}">Plans</a></li>
+              <li class="nav-item"><a class="nav-link text-600" href="{% url 'contact' %}">Contact</a></li>
+              <li class="nav-item"><a class="nav-link text-600" href="{% url 'booking' %}">Booking </a></li>
             </ul>
-            <form class="ps-lg-5">
-              <button class="btn btn-lg btn-outline-primary order-0" type="submit">Sign In</button>
+            {% if request.session.phone %}
+            <form class="ps-lg-5" action="{% url 'logout' %}">
+              <button class="btn btn-lg btn-outline-primary order-0" type="submit">Logout</button>
             </form>
+          {% else %}
+              <form class="ps-lg-5" action="{% url 'login' %}">
+                <button class="btn btn-lg btn-outline-primary order-0" type="submit">Sign In</button>
+              </form>
+          {% endif %}
+
           </div>
         </div>
       </nav>
@@ -59,11 +66,11 @@
           <div class="row flex-center">
             <div class="col-auto mb-4">
               <ul class="list-unstyled list-inline mb-0">
-                <li class="list-inline-item me3 me-sm-4"><a class="text-dark text-decoration-none" href="#!">Home</a></li>
-                <li class="list-inline-item me3 me-sm-4"><a class="text-dark text-decoration-none" href="#!">Video</a></li>
-                <li class="list-inline-item me3 me-sm-4"><a class="text-dark text-decoration-none" href="#!">Destinations</a></li>
-                <li class="list-inline-item me3 me-sm-4"><a class="text-dark text-decoration-none" href="#!">Booking</a></li>
-                <li class="list-inline-item me3 me-sm-4"><a class="text-dark text-decoration-none" href="#!">Contact</a></li>
+                <li class="list-inline-item me3 me-sm-4"><a class="text-dark text-decoration-none" href="{% url 'home' %}">Home</a></li>
+                <li class="list-inline-item me3 me-sm-4"><a class="text-dark text-decoration-none" href="{% url 'video' %}">Video</a></li>
+                <li class="list-inline-item me3 me-sm-4"><a class="text-dark text-decoration-none" href="{% url 'destination' %}">Plans</a></li>
+                <li class="list-inline-item me3 me-sm-4"><a class="text-dark text-decoration-none" href="{% url 'booking' %}">Booking</a></li>
+                <li class="list-inline-item me3 me-sm-4"><a class="text-dark text-decoration-none" href="{% url 'contact' %}">Contact</a></li>
                 <li class="list-inline-item me3 me-sm-4"><a class="text-dark text-decoration-none" href="#!">Pricing</a></li>
                 <li class="list-inline-item me3 me-sm-4"><a class="text-dark text-decoration-none" href="#!">Privacy Policy</a></li>
               </ul>
@@ -118,6 +125,7 @@
     <script src="{% static 'vendors/plyr/plyr.polyfilled.min.js' %}"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
     <script src="{% static 'assets/js/theme.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&amp;display=swap" rel="stylesheet">
   </body>
