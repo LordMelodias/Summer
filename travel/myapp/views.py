@@ -28,27 +28,29 @@ def login(request):
 
 def login_view(request):
     if request.method == 'POST':
-        email = request.POST.get('email').lower().strip()  # Convert email to lowercase and trim whitespace
-        password = request.POST.get('password').strip()  # Trim whitespace from password
-        
+        email = request.POST.get('email').lower()  # Convert email to lowercase and trim whitespace
+        password = request.POST.get('password')  # Trim whitespace from password
         print("Email:", email)
         print("Password:", password)
-        
         user = User.objects.filter(email__iexact=email).first()
-        if user and user.verified is True:
+        if user:
             print("Stored Password:", user.password)
-            if check_password(password, request.user.password):
-                request.session['username'] = user.username  # Save user's ID in session
-                return redirect('home')  # Redirect to dashboard or another page
+            password_match = check_password(password, user.password)
+            print(f"Password Match: {password_match}")
+            if check_password(password, user.password):
+                request.session['phone'] = user.phone
+                request.session['username'] = user.username
+                return render(request, 'index.html')  # Redirect to dashboard or another page
             else:
                 error_message = "Incorrect email or password. Please try again."
                 print("Password did not match!")
                 return render(request, "login.html", {'error_message': error_message})
         else:
-            error_message = "User with this email does not exist."
-            print("User not found:", email)
+            error_message = "User with this email does not exist or is not verified."
+            print("User not found or not verified:", email)
             return render(request, "login.html", {'error_message': error_message})
     return render(request, "login.html")
+
 
 def user_logout(request):
     logout(request)
