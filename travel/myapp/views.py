@@ -54,6 +54,8 @@ def login_view(request):
 
 def user_logout(request):
     logout(request)
+    if 'phone' in request.session:
+        del request.session['phone']
     return redirect('home')  # Redirect to the homepage or any other page after logout
 
 def register(request):
