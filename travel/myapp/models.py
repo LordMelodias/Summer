@@ -19,3 +19,10 @@ class User(models.Model):
 
     def check_password(self, password):
 	    return check_password(password, self.password)
+ 
+class Contact(models.Model):
+    name = models.CharField(max_length=30)
+    email = models.EmailField()
+    subject = models.CharField(max_length=50)
+    message = models.TextField()
+
