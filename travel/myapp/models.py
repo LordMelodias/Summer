@@ -26,3 +26,18 @@ class Contact(models.Model):
     subject = models.CharField(max_length=50)
     message = models.TextField()
 
+class Host(models.Model):
+    username = models.CharField(max_length=100)
+    email = models.EmailField(primary_key=True)
+    password = models.CharField(max_length=128)
+    otp = models.IntegerField()
+    verified = models.BooleanField(default=False) 
+
+    def save(self, *args, **kwargs):
+        # Only hash the password if it's not already hashed
+        if not self.password.startswith('pbkdf2_sha256$'):  # Ensure hashing only if not already hashed
+            self.password = make_password(self.password)
+        super().save(*args, **kwargs)
+
+    def check_password(self, password):
+	    return check_password(password, self.password)
