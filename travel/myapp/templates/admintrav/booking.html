@@ -1,0 +1,45 @@
+{% extends "admintrav/layout.html" %}
+{% load static %}
+{% block body %}
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 align="center">Bookings</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Booking_id</th>
+                                        <th>Destination</th>
+                                        <th>Package Type</th>
+                                        <th>Number of Travelers</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for booking in bookings %}
+                                    <tr>
+                                        <td>{{ booking.booking_id }}</td>
+                                        <td>{{ booking.destination.name }}</td>
+                                        <td>{{ booking.package_type }}</td>
+                                        <td>{{ booking.number_of_travelers }}</td>
+                                        <td>{{ booking.date }}</td>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
