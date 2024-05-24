@@ -1,0 +1,39 @@
+{% extends "admintrav/layout.html" %}
+{% load static %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Edit Destination: {{ destination.name }}</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="{% url 'edit_destination' destination.name %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="name">Destination Name</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ destination.name }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="number" class="form-control" id="price" name="price" value="{{ destination.price }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="4">{{ destination.description }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="days">Number of Days</label>
+                            <input type="number" class="form-control" id="days" name="days" value="{{ destination.days }}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <a href="{% url 'packageaction' %}" class="btn btn-secondary">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
