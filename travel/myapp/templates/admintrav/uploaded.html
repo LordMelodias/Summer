@@ -1,0 +1,61 @@
+{% extends "admintrav/layout.html" %}
+{% load static %}
+{% block body %}
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 align="center">Uploaded destinations</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                {% if message %}
+                                <div class="alert alert-success mt-3" role="alert">
+                                    {{ message }}
+                                </div>
+                                {% endif %}
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Description</th>
+                                        <th>Image</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for destination in destinations %}
+                                    <tr>
+                                        <td>{{ destination.name }}</td>
+                                        <td>{{ destination.price }}</td>
+                                        <td>{{ destination.description|slice:":50" }}</td>
+                                        <td>
+                                            {% if destination.image %}
+                                            <img src="{{ destination.image.url }}" alt="{{ destination.name }}" height="100">
+                                            {% else %}
+                                            No image available
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <form action="{% url 'edit' destination.name %}" method="post" style="display: inline;">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-info btn-sm">Edit</button>
+                                            </form>
+                                            <form action="{% url 'delete_destination' destination.name %}" method="post" style="display: inline;">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
