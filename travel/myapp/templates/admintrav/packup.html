@@ -1,0 +1,50 @@
+{% extends "admintrav/layout.html" %}
+{% load static %}
+{% block body %}  
+        <!-- partial -->
+        <div class="main-panel">
+            <div class="content-wrapper">
+              <div class="row">
+                <!-- Existing content here -->
+                <!-- New Form Section -->
+                <div class="col-12 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body">
+                      <h4 align="center" class="card-title">Upload  Destination Plan</h4>
+                      <p class="card-description">Fill in the details below to Upload</p>
+                      <form class="forms-sample" action="{% url 'upload_package' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                          <label for="exampleInputName1">Destination Name</label>
+                          <input type="text" class="form-control" id="exampleInputName1" name="name" placeholder="Destination Name">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputEmail2">Price</label>
+                          <input type="number" class="form-control" id="exampleInputEmail3" name="price" placeholder="Price">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword4">Description</label>
+                          <textarea class="form-control" id="exampleInputPassword4" placeholder="Destination" name="description" rows="4" cols="50"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail3">Number of Days</label>
+                            <input type="number" class="form-control" id="exampleInputEmail3" name="days" placeholder="Number of family member">
+                        </div>
+                        <div class="form-group">
+                          <label>Image</label>
+                          <input type="file" name="image" class="file-upload-default">
+                          <div class="input-group col-xs-12">
+                            <input type="file" name="image" class="form-control file-upload-info"  placeholder="Upload Image">
+                            <span class="input-group-append">
+                              <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                            </span>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary me-2">Submit</button>
+                        <button class="btn btn-light">Cancel</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+{% endblock body %}
