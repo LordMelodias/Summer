@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'assets/css/theme.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/login_register.css' %}">
+</head>
+<body>
+    <section class="vh-100">
+        <div class="container py-5 h-100">
+          <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="card" style="border-radius: 15px;">
+                <div class="text-center mt-4 name" align="center">
+                    Booking Rejected!.<br>
+                    <span style="color: red;">You Can Continue Now</span>
+                </div><br><br>
+                <form class="p-3 mt-3" action="{% url 'booking_action' %}">
+                  <div class="d-flex justify-content-center">
+                    <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-lg btn-outline-primary order-0">Explore More</button>
+                  </div>
+                </form>
+            </div>
+          </div>
+        </div>
+      </section>
+</body>
+</html>
