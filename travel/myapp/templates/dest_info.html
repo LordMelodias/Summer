@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block body %}
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ destination.image.url }}" alt="{{ destination.name }}">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ destination.name }}</h2>
+                            <p class="card-text">{{ destination.description }}</p>
+                            <p class="card-text"><strong>Price:</strong> ${{ destination.price }}</p>
+                            <p class="card-text"><strong>Duration:</strong> {{ destination.days }} days</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
