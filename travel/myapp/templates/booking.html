@@ -2,50 +2,126 @@
 {% load static %}
 
 {% block body %}  
+  <!-- Section: Design Block -->
+<section class="background-radial-gradient overflow-hidden">
+  <style>
+    .background-radial-gradient {
+      background-color: hsl(218, 41%, 15%);
+      background-image: radial-gradient(650px circle at 0% 0%,
+          hsl(218, 41%, 35%) 15%,
+          hsl(218, 41%, 30%) 35%,
+          hsl(218, 41%, 20%) 75%,
+          hsl(218, 41%, 19%) 80%,
+          transparent 100%),
+        radial-gradient(1250px circle at 100% 100%,
+          hsl(218, 41%, 45%) 15%,
+          hsl(218, 41%, 30%) 35%,
+          hsl(218, 41%, 20%) 75%,
+          hsl(218, 41%, 19%) 80%,
+          transparent 100%);
+    }
 
-<section id="booking">
-    <div class="bg-holder" style="background-image:url('/static/assets/img//gallery/booking.png');background-position:center;background-size:cover;">
-    </div>
-    <!--/.bg-holder-->
-    <div class="container">
-      <div class="row">
-        <div class="col-12 py-8 text-white">
-          <div class="d-flex flex-column flex-center">
-            <h2 class="text-white fs-2 fs-md-3">WE WILL SEE YOU</h2>
-            <h1 class="text-white fs-2 fs-sm-4 fs-lg-7 fw-bold">Enjoy 30% Off On First Trip</h1>
-          </div>
-          <form class="row gy-2 gx-md-2 gx-lg-4 flex-center my-6">
-            <div class="col-6 col-md-3">
-              <label class="visually-hidden" for="inlineFormSelectPref">Destinations</label>
-              <select class="form-select" id="inlineFormSelectPref">
-                <option selected="">Destinations</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+    #radius-shape-1 {
+      height: 220px;
+      width: 220px;
+      top: -60px;
+      left: -130px;
+      background: radial-gradient(#dc9d28, #917c55);
+      overflow: hidden;
+    }
+
+    #radius-shape-2 {
+      border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+      bottom: -60px;
+      right: -110px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(#dc9d28, #917c55);
+      overflow: hidden;
+    }
+
+    .bg-glass {
+      background-color: hsla(0, 0%, 100%, 0.9) !important;
+      backdrop-filter: saturate(200%) blur(25px);
+    }
+  </style>
+
+  <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+    <div class="row gx-lg-5 align-items-center mb-5">
+      <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+        <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+          The best offer <br />
+          <span style="color: hsl(218, 81%, 75%)">Enjoy 30% Off On First Trip</span>
+        </h1>
+        <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+          Temporibus, expedita iusto veniam atque, magni tempora mollitia
+          dolorum consequatur nulla, neque debitis eos reprehenderit quasi
+          ab ipsum nisi dolorem modi. Quos?
+        </p>
+      </div>
+
+      <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+        <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+        <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+
+        <div class="card bg-glass">
+          <div class="card-body px-4 py-5 px-md-5">
+            <form action="{% url 'book_trip' %}" method="post">
+              {% csrf_token %}
+              <h4 align="center" class="fw-bold fs-md-3 fs-lg-2 fs-xl-2">Booking Form</h4>
+              <!-- 2 column grid layout with text inputs for the first and last names -->
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div data-mdb-input-init class="form-outline">
+                    <label class="visually-hidden" for="inlineFormSelectDestinations">Destinations</label>
+              <select class="form-select" id="inlineFormSelectDestinations" name="destination_name">
+                  <option selected disabled>Choose Destination</option>
+                  {% for destination in destinations %}
+                      <option value="{{ destination.name }}">{{ destination.name }}</option>
+                  {% endfor %}
               </select>
-            </div>
-            <div class="col-6 col-md-3">
-              <label class="visually-hidden" for="autoSizingSelect">Package</label>
-              <select class="form-select" id="autoSizingSelect">
-                <option selected="">Package</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div data-mdb-input-init class="form-outline">
+                    <label class="visually-hidden" for="autoSizingSelect">Package</label>
+              <select class="form-select" id="autoSizingSelect" name="package_type">
+                <option selected="">Package Type</option>
+                <option value="standard">Economic</option>
+                <option value="standard">Standard</option>
+                <option value="premium">Premium</option>
+                <option value="deluxe">Deluxe</option>
               </select>
-            </div>
-            <div class="col-6 col-md-3">
-              <label class="visually-hidden" for="date">Date</label>
-              <div class="input-group">
-                <input class="form-control" id="date" type="date" />
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="col-6 col-md-auto">
-              <button class="btn btn-lg btn-primary" type="submit">Book Now</button>
-            </div>
-          </form>
+
+              <!-- Email input -->
+              <div data-mdb-input-init class="form-outline mb-4">
+                <input type="number" id="form3Example3" class="form-control" name="number_of_travelers" placeholder="Number of Traveller" required/>
+              </div>
+
+              <!-- Password input -->
+              <div data-mdb-input-init class="form-outline mb-4">
+                <label class="visually-hidden" for="date">Date</label>
+                <div class="input-group">
+                  <input class="form-control" id="date" type="date" name="date" required/>
+                </div>
+              </div>
+              <!-- Submit button -->
+              <div style="padding-left: 10rem;">
+              <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">
+               Submit
+              </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </section>
-
+  </div>
+</section>
+<!-- Section: Design Block -->
   {% endblock body %}
