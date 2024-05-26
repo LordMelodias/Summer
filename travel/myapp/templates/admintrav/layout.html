@@ -1,0 +1,271 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Star Admin2</title>
+    <!-- End plugin css for this page -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/login_register.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendors/css/vendor.bundle.base.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/js/select.dataTables.min.css' %}">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicons/favicon.ico' %}" />
+    <style>
+        .sidebar-minimized .sidebar {
+            width: 65px; /* Adjust this width as needed */
+        }
+        .sidebar-minimized .sidebar .nav-item .menu-title {
+            display: none;
+        }
+        .sidebar-minimized .sidebar .nav-item .menu-icon {
+            margin-right: 0;
+        }
+        .sidebar-minimized .sidebar .nav-item .collapse {
+            display: none;
+        }
+        /* Dropdown menu */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.175);
+}
+
+/* Show the dropdown menu on hover */
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Dropdown header */
+.dropdown-header {
+    display: block;
+    padding: .5rem 1.5rem;
+    margin-bottom: 0;
+    font-size: .875rem;
+    color: #6c757d;
+    white-space: nowrap;
+}
+
+/* Dropdown items */
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: .25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+
+/* Add some spacing between dropdown items */
+.dropdown-item + .dropdown-item {
+    margin-top: .125rem;
+}
+
+/* Dropdown item icon */
+.dropdown-item-icon {
+    margin-right: .75rem;
+}
+
+/* Badge */
+.badge {
+    display: inline-block;
+    padding: .35em .65em;
+    font-size: .75em;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    color: #fff;
+    background-color: #dc3545;
+}
+
+    </style>
+</head>
+<body class="with-welcome-text">
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+        <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+                <div class="me-3">
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button" id="sidebarToggle" data-bs-toggle="offcanvas">
+                        <span class="fa fa-bars"></span>
+                    </button>
+                </div>
+                <div>
+                    <a class="navbar-brand brand-logo" href="index.html">
+                        <img src="{% static 'assets/img/gallery/logo2.png' %}" alt="logo" />
+                    </a>
+                    <a class="navbar-brand brand-logo-mini" href="index.html">
+                        <img src="{% static 'assets/img/gallery/logo-icon.png' %}" alt="logo" />
+                    </a>
+                </div>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-top">
+                <ul class="navbar-nav">
+                    <li class="nav-item fw-semibold d-none d-lg-block ms-0">
+                        {% if request.session.email %}
+                        <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">{{ request.session.username}}</span></h1>
+                        {% else %}
+                        <script>
+                            window.location.href = "{% url 'adminlog' %}";
+                        </script>
+                        {% endif %}
+                        <h3 class="welcome-sub-text">Your application summary</h3>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item d-none d-lg-block">
+                        <div id="datepicker-popup" class="input-group date datepicker navbar-date-picker">
+                            <span class="input-group-addon input-group-prepend border-right">
+                                <span class="fa fa-calendar input-group-text calendar-icon"></span>
+                            </span>
+                            <div style="padding-bottom: 5rem;">
+                                <h5 id="current-datetime"></h5>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link count-indicator" id="countDropdown" href="https://mail.google.com/mail/u/0/#inbox" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa fa-envelope icon-lg"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-user icon-lg"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right navbar-dropdown">
+                            <div class="dropdown-header text-center">
+                                <i class="fa fa-user icon-lg"></i>
+                                <p class="mb-1 mt-3 fw-semibold">{{ request.session.username}}</p>
+                                <p class="fw-light text-muted mb-0">{{ request.session.email}}</p>
+                            </div>
+                            <a class="dropdown-item" href="#"><i class="fa fa-question-circle dropdown-item-icon text-primary me-2"></i> FAQ</a>
+                            <a class="dropdown-item" href="{% url 'admin_logout' %}"><i class="fa fa-power-off dropdown-item-icon text-primary me-2"></i>Sign Out</a>
+                        </div>
+                    </li>
+                    
+                </ul>
+                <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
+                    <span class="fa fa-bars"></span>
+                </button>
+            </div>
+        </nav>
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:partials/_sidebar.html -->
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard' %}">
+                            <i class="fa fa-home menu-icon"></i>
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'packupload' %}">
+                            <i class="fa fa-tasks menu-icon"></i>
+                            <span class="menu-title">Package Upload</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'packageaction' %}">
+                            <i class="fa fa-gear menu-icon"></i>
+                            <span class="menu-title">Package Action</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'booking_action' %}">
+                            <i class="fa fa-paper-plane menu-icon"></i>
+                            <span class="menu-title">Booking Request</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'status' %}">
+                            <i class="fa fa-file-alt menu-icon"></i>
+                            <span class="menu-title">Booking Status</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- partial -->
+            {% block  body %}  {% endblock %}
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+
+    <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Rohit Travel from<a href="https://lordmelodias.github.io/Portfolio/" target="_blank"> LordMelodias</a> </span>
+          <span class="float-none float-sm-end d-block mt-1 mt-sm-0 text-center">Copyright © 2024. All rights reserved.</span>
+        </div>
+      </footer>
+    <script src="{% static 'assets/js/dashboard.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        (function($) {
+            'use strict';
+            $(function() {
+                $('[data-bs-toggle="offcanvas"]').on("click", function() {
+                    $('.sidebar-offcanvas').toggleClass('active');
+                    $('body').toggleClass('sidebar-minimized');
+                });
+                // Function to format time with leading zeros
+                function padZero(number) {
+                    return number < 10 ? '0' + number : number;
+                }
+
+                // Function to update the date and time
+                function updateDateTime() {
+                    var now = new Date();
+                    var day = now.toLocaleString('en-us', { weekday: 'short' });
+                    var date = padZero(now.getDate());
+                    var month = now.toLocaleString('en-us', { month: 'short' });
+                    var year = now.getFullYear();
+                    var hours = padZero(now.getHours());
+                    var minutes = padZero(now.getMinutes());
+                    var seconds = padZero(now.getSeconds());
+                    
+                    var formattedDateTime = `${day}, ${date} ${month} ${year} ${hours}:${minutes}:${seconds}`;
+                    
+                    $('#current-datetime').text(formattedDateTime);
+                }
+
+                // Initial update
+                updateDateTime();
+
+                // Update the date and time every second
+                setInterval(updateDateTime, 1000);
+            });
+        })(jQuery);
+    </script>
+</body>
+</html>
