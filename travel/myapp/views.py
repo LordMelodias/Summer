@@ -193,3 +193,9 @@ def sent_message(request):
             print("Error:", e)
             error_message = "Message Sent Unsuccessful"  
     return render(request, 'contact.html', {'error_message' : error_message})
+
+# Admin Code start here
+
+# Login Page
+def login1(request):
+    return render(request, 'admintrav/login.html')
