@@ -224,3 +224,10 @@ def loginview1(request):
             print("User not found or not verified:", email)
             return render(request, "admintrav/login.html", {'error_message': error_message})
     return render(request, "admintrav/login.html")
+
+# logout
+def admin_logout(request):
+    logout(request)
+    if 'email' in request.session:
+        del request.session['email']
+    return redirect('dashboard')
