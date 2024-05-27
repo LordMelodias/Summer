@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect
-from .models import User
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import User, Host, Destination, Booking
+from datetime import datetime
 from .models import Contact
 from django.db import IntegrityError
 from django.contrib.auth import logout
@@ -7,21 +8,60 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import check_password
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from pymongo import MongoClient
 import random
 import smtplib
 import string
+
+
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
 
 def destination(request):
-    return render(request, 'destination.html')
+    destinations = Destination.objects.all()
+    return render(request, 'destination.html', {'destinations': destinations})
+
+def destination_detail(request, name):
+    destination = get_object_or_404(Destination, name=name)
+    return render(request, 'dest_info.html', {'destination': destination})
 
 def video(request):
     return render(request, 'video.html')
 
 def booking(request):
-    return render(request, 'booking.html')
+    destinations = Destination.objects.all()
+    return render(request, 'booking.html',{'destinations': destinations})
+
+def packagetype(request):
+    return render(request, 'package.html')
+
+# booking form
+def book_trip(request):
+    if request.method == 'POST':
+        # Check if the user has a session key
+        if 'email' in request.session:
+            email = request.session['email']
+            destination_name = request.POST.get('destination_name')
+            package_type = request.POST.get('package_type')
+            number_of_travelers = request.POST.get('number_of_travelers')
+            date = request.POST.get('date')
+
+            # Retrieve the destination based on the name
+            destination = Destination.objects.get(name=destination_name)
+
+            # Create a new Booking object
+            booking = Booking(destination=destination, package_type=package_type, number_of_travelers=number_of_travelers, date=date, email=email)
+            booking.save()
+            booking_id = booking.booking_id
+            print(booking_id)
+
+            return render(request, 'booking_success.html')  # Redirect to a success page after booking
+        else:
+            return redirect('login')  # Redirect to the login page if the user does not have a session
+    else:
+        destinations = Destination.objects.all()  # Retrieve all destinations
+        return render(request, 'booking.html', {'destinations': destinations})
 
 def login(request):
     return render(request, 'login.html')
@@ -39,6 +79,7 @@ def login_view(request):
             print(f"Password Match: {password_match}")
             if check_password(password, user.password):
                 request.session['phone'] = user.phone
+                request.session['email'] = user.email
                 request.session['username'] = user.username
                 return render(request, 'index.html')  # Redirect to dashboard or another page
             else:
@@ -58,12 +99,14 @@ def user_logout(request):
         del request.session['phone']
     return redirect('home')  # Redirect to the homepage or any other page after logout
 
+# Register Page 
+
 def register(request):
     return render(request, 'register.html')
 
 def send_email(subject, message, recipient_email):
-    sender_email = 'rohitchauhan@gmail.com'  # Update with your Gmail email
-    sender_password = '---------'  # Update with your Gmail password
+    sender_email = 'rohitchauhan9880@gmail.com'  # Update with your Gmail email
+    sender_password = 'hrkdsjslmpyevisg'  # Update with your Gmail password
 
     msg = MIMEMultipart()
     msg['From'] = sender_email
@@ -78,7 +121,8 @@ def send_email(subject, message, recipient_email):
     text = msg.as_string()
     server.sendmail(sender_email, recipient_email, text)
     server.quit()
-    
+
+# View for user registration
 def save_register(request):
     if request.method == "POST":
         username = request.POST['username']
@@ -129,3 +173,23 @@ def otp(request, email):
 
 def contact(request):       
     return render(request, 'contact.html')
+
+def sent_message(request):
+    error_message = ""
+    if request.method =='POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        mess = Contact(name = name, email = email, subject = subject, message = message)
+        mess.save()
+        try:
+            subject = subject
+            message = message
+            recipient_email = "rohitchauhan9880@gmail.com"
+            send_email(subject, message, recipient_email)
+        except Exception as e:
+            # Log the exception for debugging purposes
+            print("Error:", e)
+            error_message = "Message Sent Unsuccessful"  
+    return render(request, 'contact.html', {'error_message' : error_message})
