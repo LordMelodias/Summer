@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block body %}
+
+<style>
+    /* Custom CSS for padding and card styles */
+    .card-container {
+        padding-top: 100px; /* Adjust as needed */
+        padding-right: 35px;
+        padding-left: 35px;
+    }
+
+    .card {
+        border-radius: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+    h3{
+        padding-bottom: 20px;
+    }
+</style>
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row card-container">
+            <h3 align="center" class="fw-bold fs-md-3 fs-lg-4 fs-xl-5">Package Type</h3>
+            <div class="col-md-4 mb-3 mb-md-5 grid-margin grid-margin-md-0">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Economic</h4>
+                        <p class="card-description">Hotel, Travelling</p>
+                        <ul class="list-ticked">
+                            <li>Normal Travelling Charges</li>
+                            <li>Consectetur adipiscing elit</li>
+                            <li>Integer molestie lorem at massa</li>
+                            <li>Facilisis in pretium nisl aliquet</li>
+                            <li>Nulla volutpat aliquam velit></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 grid-margin grid-margin-md-0">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Standard</h4>
+                        <p class="card-description">Hotel, Travelling, Breakfast, Dinner</p>
+                        <ul class="list-arrow">
+                            <li>Travelling Charges + &dollar;20</li>
+                            <li>Consectetur adipiscing elit</li>
+                            <li>Integer molestie lorem at massa</li>
+                            <li>Facilisis in pretium nisl aliquet</li>
+                            <li>Nulla volutpat aliquam velit></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 grid-margin grid-margin-md-0">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Premium</h4>
+                        <p class="card-description">Hotel, Travelling, Breakfast, Dinner, Tour Guide</p>
+                        <ul class="list-star">
+                            <li>Travelling Charges + &dollar;100</li>
+                            <li>Consectetur adipiscing elit</li>
+                            <li>Integer molestie lorem at massa</li>
+                            <li>Facilisis in pretium nisl aliquet</li>
+                            <li>Nulla volutpat aliquam velit></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 grid-margin grid-margin-md-0">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Deluxe</h4>
+                        <p class="card-description">Farm House, Travelling, Breakfast, Dinner, Tour Guide, Rent Car</p>
+                        <ul class="list-star">
+                            <li>Travelling Charges + &dollar;200</li>
+                            <li>Consectetur adipiscing elit</li>
+                            <li>Integer molestie lorem at massa</li>
+                            <li>Facilisis in pretium nisl aliquet</li>
+                            <li>Nulla volutpat aliquam velit></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
