@@ -78,3 +78,33 @@ def send_email(subject, message, recipient_email):
     text = msg.as_string()
     server.sendmail(sender_email, recipient_email, text)
     server.quit()
+    
+def save_register(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        phone = request.POST['phone']
+        email = request.POST['email']
+        password = request.POST['password']
+        otp_verified = request.POST.get('verified')  # Check if OTP is verified
+        
+        if otp_verified:
+            try:
+                user = User.objects.create_user(username=username, phone=phone, email=email, password=password)
+                user.verified = True
+                user.save()
+                return render(request, 'registration_success.html', {'email': email})
+            except IntegrityError:
+                error_message = "This email address is already registered."
+        else:
+            otp = ''.join(random.choices(string.digits, k=6))
+            try:
+                user = User(username=username, phone=phone, email=email, password=make_password(password), otp=otp)
+                user.save()
+                subject = 'OTP Verification'
+                message = f'Your OTP for registration is: {otp}'
+                recipient_email = email
+                send_email(subject, message, recipient_email)
+                return render(request, 'otp.html', {'email': email})
+            except IntegrityError:
+                error_message = "This email address is already registered."
+        return render(request, 'register.html', {'error_message': error_message})
