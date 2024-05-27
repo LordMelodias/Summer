@@ -231,3 +231,5 @@ def admin_logout(request):
     if 'email' in request.session:
         del request.session['email']
     return redirect('dashboard')
+
+# Write by Yourself or after part contact me by email
