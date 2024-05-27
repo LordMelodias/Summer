@@ -199,3 +199,28 @@ def sent_message(request):
 # Login Page
 def login1(request):
     return render(request, 'admintrav/login.html')
+
+def loginview1(request):
+    if request.method == 'POST':
+        email = request.POST.get('email').lower()  # Convert email to lowercase and trim whitespace
+        password = request.POST.get('password')  # Trim whitespace from password
+        print("Email:", email)
+        print("Password:", password)
+        user = Host.objects.filter(email__iexact=email).first()
+        if user:
+            print("Stored Password:", user.password)
+            password_match = check_password(password, user.password)
+            print(f"Password Match: {password_match}")
+            if check_password(password, user.password):
+                request.session['email'] = user.email
+                request.session['username'] = user.username
+                return render(request, 'admintrav/index.html', {'current_datetime': current_datetime})  # Redirect to dashboard or another page
+            else:
+                error_message = "Incorrect email or password. Please try again."
+                print("Password did not match!")
+                return render(request, "admintrav/login.html", {'error_message': error_message})
+        else:
+            error_message = "User with this email does not exist or is not verified."
+            print("User not found or not verified:", email)
+            return render(request, "admintrav/login.html", {'error_message': error_message})
+    return render(request, "admintrav/login.html")
