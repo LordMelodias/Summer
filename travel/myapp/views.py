@@ -108,3 +108,21 @@ def save_register(request):
             except IntegrityError:
                 error_message = "This email address is already registered."
         return render(request, 'register.html', {'error_message': error_message})
+
+
+# View for OTP verification
+def otp(request, email):
+    if request.method == "POST":
+        # Get OTP entered by the user
+        entered_otp = request.POST.get('otp')
+        email = request.POST.get('email')
+        # Retrieve the user objects by email
+        user = User.objects.filter(email=email, otp=entered_otp).first()
+        if user:
+            user.verified = True
+            user.save()
+            return render(request, 'registration_success.html', {'email': user.email})
+        else:
+            return render(request, 'failure.html')
+    else:
+        return render(request, 'otp.html')
