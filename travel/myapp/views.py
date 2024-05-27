@@ -126,3 +126,6 @@ def otp(request, email):
             return render(request, 'failure.html')
     else:
         return render(request, 'otp.html')
+
+def contact(request):       
+    return render(request, 'contact.html')
