@@ -11,5 +11,5 @@ The Travel website
 In Home Page Sign in option show until user login that. Without login the user cannot books the plans. when user booking the package we take user email as a session.
 ![image](https://github.com/LordMelodias/Summer/assets/105154639/d0790c72-ca93-40a2-8d1c-8cccaa62baea)
 # Plans page 
+The plan can be managed by admin where admin can add edit and delete plan
 ![image](https://github.com/LordMelodias/Summer/assets/105154639/c51e6382-b853-4391-a7f9-59e88d4f070a)
-
