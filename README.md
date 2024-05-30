@@ -14,6 +14,7 @@ In Home Page Sign in option show until user login that. Without login the user c
 # Plans page 
 The plan can be managed by admin where admin can add edit and delete plan
 ![image](https://github.com/LordMelodias/Summer/assets/105154639/c51e6382-b853-4391-a7f9-59e88d4f070a)
+----------------------------------------------------------------------------------
 ![image](https://github.com/LordMelodias/Summer/assets/105154639/91c06894-7a27-48f4-a4d4-06f008679f7f)
 
 # Booking Page 
