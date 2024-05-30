@@ -24,4 +24,5 @@ We create booking page, where without login user cannot book the plans. when use
 If user has any query then they can use contact service when user sent message the admin will receive mail
 ![alt text](image-3.png)
 
-
+# Admin Dashboard page
+The dashboard page will show pending request, accept request, reject, total plans and total booking request
