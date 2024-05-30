@@ -20,4 +20,8 @@ The plan can be managed by admin where admin can add edit and delete plan
 We create booking page, where without login user cannot book the plans. when user booking the package we take user email as a session and store in database with booking ID. The booking status send user through email.
 ![alt text](image-2.png)
 
+# Contact Page
+If user has any query then they can use contact service when user sent message the admin will receive mail
+![alt text](image-3.png)
+
 
