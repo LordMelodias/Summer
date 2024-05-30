@@ -27,3 +27,7 @@ If user has any query then they can use contact service when user sent message t
 # Admin Dashboard page
 The dashboard page will show pending request, accept request, reject, total plans and total booking request
 ![alt text](image-4.png)
+
+# Plans upload page 
+
+![alt text](image-5.png)
