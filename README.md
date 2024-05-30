@@ -34,3 +34,4 @@ Plans page helps the admin to uploads the plans.
 
 # Edit plans page
 It helps the admin to edit or delete the uploaded plans
+![alt text](image-6.png)
