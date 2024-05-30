@@ -29,5 +29,5 @@ The dashboard page will show pending request, accept request, reject, total plan
 ![alt text](image-4.png)
 
 # Plans upload page 
-
+Plans page helps the admin to uploads the plans 
 ![alt text](image-5.png)
