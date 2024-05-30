@@ -36,5 +36,6 @@ Plans page helps the admin to uploads the plans.
 It helps the admin to edit or delete the uploaded plans
 ![alt text](image-6.png)
 
-# 
+# Booking Status package for admin 
+Admin can reject or accept the booking request. when admin accept or reject the request the user will the mail.
 ![alt text](image-7.png)
