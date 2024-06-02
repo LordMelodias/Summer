@@ -16,7 +16,6 @@ dropDown.addEventListener("click", function(){
 })
 
 
-
 function titleValidate(){
     let errorDiv = document.getElementById("error-div")
     let title_input = document.getElementById("title")
