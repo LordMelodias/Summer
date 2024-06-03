@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block body %} 
+
+<div class="videos">
+          
+    <div class="channel-art">
+        <img src="images/channel-art.jpg" alt="">
+    </div>
+    <div class="channel-header flex">
+        <div class="channel-img-title flex">
+            <img class="img" src="images/logo.jpg" alt="">
+            <div class="channel-image-texts">
+                <h4>Desphixs</h4>
+                <span>2.46K subscribers</span>
+            </div>
+        </div>
+        <div class="channel-header-btns">
+            <div><a href="" class="channel-join">Join</a></div>
+            <div><a href="" class="channel-subscribe">Subscribe</a></div>
+        </div>
+    </div>
+    <div class="channel-header-links flex">
+        <a href="channel.html" class="display-this">Home</a>
+        <a href="channel-videos.html" class="display-this">Videos</a>
+        <a href="community.html" class="dont-display-thdis">Community</a>
+        <a href="index.html" class="dont-display-this">Membership</a>
+        <a href="index.html" class="dont-display-this">Channels</a>
+        <a href="about.html" class="display-this">About</a>
+        <a href="" class="dont-display-this"><i class="material-icons">search</i></a>
+    </div>
+    <br><br>
+        <hr>
+    <div class="videos__container">
+        <!-- Single Video Starts Here -->
+
+        <div class="content-border">
+            <div class="content-div">
+                <div class="header-comm">
+                    <div class="channel-details">
+                        <img src="images/logo.jpg" class="channel-img-com" alt="">
+                        <h5>Desphixs</h5>
+                        <span>10 Days Ago</span>
+                    </div>
+                    <!-- <div class="elipse-icon">
+                        <i class="material-symbols-outlined">sort</i>
+                    </div> -->
+                    <div class="dropdown">
+                        <button class="dropbtn"> 
+                          <i class="material-symbols-outlined">sort</i>
+                        </button>
+                        <div class="dropdown-content">
+                          <a href="#"> <i class="material-symbols-outlined">edit</i> &nbsp; Edit</a>
+                          <a href="#"> <i class="material-symbols-outlined">delete</i> &nbsp; Delete</a>
+                          <a href="#"> <i class="material-symbols-outlined">share</i> &nbsp; Share</a>
+                        </div>
+                      </div>
+                    
+                </div>
+                <div class="content">
+                    <h3>I will be launching my first-ever cookbook next year, and we have JUST opened the email list so you can be the first to get notified. Sign up here! </h3>
+                    <img src="images/1.jpg" alt="">
+                </div>
+                <div class="icon-section">
+                    <div class="single-icon">
+                        <i class="materiald-icons material-symbols-outlined">thumb_up</i>
+                        <span>30k</span>
+                    </div>
+
+                    <div class="single-icon">
+                        <i class="materiald-icons material-symbols-outlined">thumb_down</i>
+                        <span>30k</span>
+                    </div>
+
+                    <div class="single-icon">
+                        <i class="materiald-icons material-symbols-outlined">share</i>
+                    </div>
+
+                    <div class="single-icon">
+                        <i class="materiald-icons material-symbols-outlined">chat</i>
+                        <span>70</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock body %}
