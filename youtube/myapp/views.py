@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from .models import Video, Comment, Channel, Like, Dislike, Video_View, Channel_Subscription
 # Create your views here.
 
 def home(request):
