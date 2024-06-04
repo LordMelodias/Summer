@@ -1,0 +1,59 @@
+{% extends "your_video/layout.html" %}
+{% load static %}
+{% block body %} 
+
+<div class="videos__container">
+    <!-- Single Video Starts Here -->
+
+    <div class="content-border">
+        <div class="content-div">
+            <div class="header-comm">
+                <div class="channel-details">
+                    <img src="{% static 'images/logo.jpg' %}" class="channel-img-com" alt="">
+                    <h5>Desphixs</h5>
+                    <span>10 Days Ago</span>
+                </div>
+                <!-- <div class="elipse-icon">
+                    <i class="material-symbols-outlined">sort</i>
+                </div> -->
+                <div class="dropdown">
+                    <button class="dropbtn"> 
+                      <i class="material-symbols-outlined">sort</i>
+                    </button>
+                    <div class="dropdown-content">
+                      <a href="#"> <i class="material-symbols-outlined">edit</i> &nbsp; Edit</a>
+                      <a href="#"> <i class="material-symbols-outlined">delete</i> &nbsp; Delete</a>
+                      <a href="#"> <i class="material-symbols-outlined">share</i> &nbsp; Share</a>
+                    </div>
+                  </div>
+                
+            </div>
+            <div class="content">
+                <h3>I will be launching my first-ever cookbook next year, and we have JUST opened the email list so you can be the first to get notified. Sign up here! </h3>
+                <img src="{% static 'images/1.jpg' %}" alt="">
+            </div>
+            <div class="icon-section">
+                <div class="single-icon">
+                    <i class="material-icons material-symbols-outlined">thumb_up</i>
+                    <span>30k</span>
+                </div>
+
+                <div class="single-icon">
+                    <i class="material-icons material-symbols-outlined">thumb_down</i>
+                    <span>30k</span>
+                </div>
+
+                <div class="single-icon">
+                    <i class="material-icons material-symbols-outlined">share</i>
+                </div>
+
+                <div class="single-icon">
+                    <i class="material-icons material-symbols-outlined">chat</i>
+                    <span>70</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock body %}
