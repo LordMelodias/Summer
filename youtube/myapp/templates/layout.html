@@ -11,8 +11,25 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <style>
+        /* Basic styling for the menu and sidebar */
+#menu {
+    cursor: pointer;
+    padding: 10px;
+    display: inline-block;
+}
+.sidebar-minimized .sidebar__category .material-icons {
+    display: none;
+}
+
+.sidebar .sidebar__category span{
+    display: block;
+}
+
+    </style>
 </head>
 <body>
+
     <div class="header">
         <!-- Header menu Start -->
 
@@ -136,6 +153,14 @@
         </div>
     </div>
 
-<script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#menu').on('click', function() {
+                $('.sidebar').toggleClass('sidebar-minimized');
+            });
+        });
+    </script>
 </body>
 </html>
