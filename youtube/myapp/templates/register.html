@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Form</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <style>
+        .box {
+            background-color: #fff;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+              width: 30rem;
+              height: 95%;
+              padding: 3.5rem;
+              box-sizing: border-box;
+              border: 1px solid #dadce0;
+              -webkit-border-radius: 8px;
+              border-radius: 8px;
+          }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <div class="logo">
+            <img src="https://cdn.vox-cdn.com/thumbor/Pkmq1nm3skO0-j693JTMd7RL0Zk=/0x0:2012x1341/1200x800/filters:focal(0x0:2012x1341)/cdn.vox-cdn.com/uploads/chorus_image/image/47070706/google2.0.0.jpg" alt="" height="120px" width="100px">
+        </div>
+    <h2>Sign up</h2>
+    <p>to continue to YouTube</p>
+    <form action="{% url 'save_register' %}" method="post">
+        {% csrf_token %}
+        <div class="inputBox">
+            <input type="test" name="name" required onkeyup="this.setAttribute('value', this.value);"  value="">
+            <label>Username</label>
+          </div>
+        <div class="inputBox">
+          <input type="email" name="email" required onkeyup="this.setAttribute('value', this.value);"  value="">
+          <label>Email</label>
+        </div>
+        <div class="inputBox">
+              <input type="text" name="password" required onkeyup="this.setAttribute('value', this.value);" value="">
+              <label>Password</label>
+            </div>
+            <div class="actions">
+                <input type="submit" name="sign-in" value="Sign In">
+            </div>
+            <div class="register">
+                <a href="{% url 'login' %}" class="create">Account Already Exit</a>
+            </div>
+      </form>
+    </div>
+
+</body>
+</html>
