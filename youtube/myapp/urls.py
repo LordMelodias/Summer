@@ -2,5 +2,9 @@ from django.urls import path, include
 from myapp import views
 
 urlpatterns = [
-    path('', views.home)
+    path("", views.home, name='home'),
+    path("/channel_video", views.channel_video, name='channel_video'),
+    path("/about", views.about, name='about'),
+    path("/community", views.community, name='community'),
+    path("/video", views.video, name='video'),
 ]
