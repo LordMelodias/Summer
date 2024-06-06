@@ -61,8 +61,8 @@ def login_view(request):
             print(f"Password Match: {password_match}")
             if check_password(password, user.password):
                 request.session['email'] = user.email
-                request.session['username'] = user.username
-                return render(request, 'index.html')  # Redirect to dashboard or another page
+                request.session['name'] = user.name
+                return render(request, 'your_video/index.html', )  # Redirect to dashboard or another page
             else:
                 error_message = "Incorrect email or password. Please try again."
                 print("Password did not match!")
