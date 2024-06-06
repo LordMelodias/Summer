@@ -106,6 +106,7 @@ def save_register(request):
                 error_message = "This email address is already registered."
         return render(request, 'register.html', {'error_message': error_message})
 
+
 def otp(request, email):
     if request.method == "POST":
         # Get OTP entered by the user
@@ -116,7 +117,7 @@ def otp(request, email):
         if user:
             user.verified = True
             user.save()
-            return render(request, 'registration_success.html', {'email': user.email})
+            return render(request, 'regsucessful.html', {'email': user.email})
         else:
             return render(request, 'failure.html')
     else:
