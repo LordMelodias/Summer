@@ -89,7 +89,7 @@ def save_register(request):
                 user = User.objects.create_user(name=name, email=email, password=password)
                 user.verified = True
                 user.save()
-                return render(request, 'registration_success.html', {'email': email})
+                return render(request, 'regsucessful.html', {'email': email})
             except IntegrityError:
                 error_message = "This email address is already registered."
         else:
