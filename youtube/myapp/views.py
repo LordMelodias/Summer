@@ -125,3 +125,20 @@ def otp(request, email):
     
 def create_chan(request):
     return render(request, 'your_video/channel_create.html')
+
+def create_channel(request, email):
+    if request.method == 'POST':
+        # Check if the user has a session key
+        if 'email' in request.session:
+            email = request.POST.get('email')
+            channel_name = request.session['name']
+            image = request.FILES.get('image')
+            channel = Channel(channel_name=channel_name, image=image, email=email)
+            channel.save
+            print("channel_save")
+            message = "Channel Create Successful"
+            return render(request, 'your_video/index.html', {'message' : message})
+        else:
+            return HttpResponseRedirect('login')
+    return render(request, 'your_video/channel_create.html')
+     
