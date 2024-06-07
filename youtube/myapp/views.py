@@ -123,4 +123,5 @@ def otp(request, email):
     else:
         return render(request, 'otp.html')
     
- 
+def create_chan(request):
+    return render(request, 'your_video/channel_create.html')
