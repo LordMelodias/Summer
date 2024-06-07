@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channel|Create</title>
+    <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/demo.css' %}">
+    <style>
+        .card .logo_youtube{
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <section>
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Create Channel</h2>
+              <div class="logo_youtube">
+              <img src="https://www.xda-developers.com/files/2017/08/After-12-Years-Google-Gives-YouTube-a-New-Logo-1900x700_c.png" alt="" height="50px" width="100px">
+              </div>
+              <form action="{% url 'create_channel' email=email%}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                Fill the following details!<br>
+                <span style="color: green;">Few Steps Left.</span><br><br>
+                <div data-mdb-input-init class="form-outline mb-4">
+                  <input type="text" name="name"  id="channelname" class="form-control form-control-lg" />
+                </div>
+                <div data-mdb-input-init class="form-outline mb-4">
+                  <input type="file" name="image"  id="form3Example1cg" class="form-control form-control-lg" />
+                </div>
+
+                <div class="d-flex justify-content-center">
+                  <button  type="submit" data-mdb-button-init
+                    data-mdb-ripple-init class="btn btn-lg btn-outline-primary order-0">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>
