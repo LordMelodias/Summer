@@ -11,5 +11,5 @@ urlpatterns = [
     path("register", views.register, name='register'),
     path("login_view", views.login_view, name='login_view'),
     path("save_register", views.save_register, name='save_register'),
-    
+     path('otp/<str:email>/', views.otp, name='otp'),
 ]
