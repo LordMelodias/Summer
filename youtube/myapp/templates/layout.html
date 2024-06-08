@@ -11,22 +11,6 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <style>
-        /* Basic styling for the menu and sidebar */
-#menu {
-    cursor: pointer;
-    padding: 10px;
-    display: inline-block;
-}
-.sidebar-minimized .sidebar__category .material-icons {
-    display: none;
-}
-
-.sidebar .sidebar__category span{
-    display: block;
-}
-
-    </style>
 </head>
 <body>
 
@@ -57,7 +41,7 @@
             <i class="material-icons ">videocam</i>
             <i class="material-icons">apps</i>
             <i class="material-icons display-this">notifications</i>
-            <a href="{% url 'login' %}"><i id="drop-down" class="material-icons display-this">account_circle</i></a>
+            <a href="channel.html"><i id="drop-down" class="material-icons display-this">account_circle</i></a>
         </div>
         <!-- Header Icons Ends -->
 
@@ -148,19 +132,59 @@
                     </div>
                 </div>
             </div>
-                
-            {% block  body %}  {% endblock %}
-        </div>
-    </div>
+            <div class="videos">
 
-    <script src="{% static 'js/main.js' %}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#menu').on('click', function() {
-                $('.sidebar').toggleClass('sidebar-minimized');
-            });
-        });
-    </script>
+                <div class="channel-art">
+                    <img src="images/channel-art.jpg" alt="">
+                </div>
+                <div class="channel-header flex">
+                    <div class="channel-img-title flex">
+                        <img class="img" src="images/logo.jpg" alt="">
+                        <div class="channel-image-texts">
+                            {% if request.session.email %}
+                            <h4>{{ request.session.name}}</h4>
+                            {% else %}
+                            <script>
+                                window.location.href = "{% url 'create_channel' email=email %}";
+                            </script>
+                        {% endif %}
+                            <span>2.46K subscribers</span>
+                        </div>
+                    </div>
+                    <div class="channel-header-btns">
+                        {% if request.session.name %}
+                        <div><a href="#" class="channel-subscribe">Subscribe</a></div>
+                        {% else %}
+                        <script>
+                            window.location.href = "{% url 'create_channel' email=email %}";
+                        </script>
+                    {% endif %}
+                    </div>
+                </div>
+                <div class="channel-header-links flex">
+                    <a href="{% url 'channel_video' %}" class="display-this">Home</a>
+                    <a href="{% url 'video' %}" class="display-this">Videos</a>
+                    <a href="{% url 'community' %}" class="dont-display-thdis">Community</a>
+                    <a href="index.html" class="dont-display-this">Membership</a>
+                    <a href="index.html" class="dont-display-this">Channels</a>
+                    <a href="{% url 'about' %}" class="display-this">About</a>
+                    <a href=""><i class="material-icons">search</i></a>
+                </div>
+
+                <hr>
+                <br>
+                <div class="popular-video flex">
+                    <h3>All Videos</h3>
+
+                </div>
+                <br>
+
+        {% block  body %}  {% endblock %}
+
+</div>
+</div>
+</div>
+</div>
+<script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
