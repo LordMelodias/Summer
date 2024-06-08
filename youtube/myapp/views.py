@@ -12,8 +12,8 @@ import smtplib
 
 # Email setup
 def send_email(subject, message, recipient_email):
-    sender_email = 'rohitchauhan9880@gmail.com'  # Update with your Gmail email
-    sender_password = 'hrkdsjslmpyevisg'  # Update with your Gmail password
+    sender_email = 'rohitchauhan@gmail.com'  # Update with your Gmail email
+    sender_password = '#############'  # Update with your Gmail password
 
     msg = MIMEMultipart()
     msg['From'] = sender_email
