@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Video, Comment, Channel, Like, Dislike, Video_View, Channel_Subscription, User
 import string, random
+from django.views.generic.base import View, HttpResponseRedirect, HttpResponse
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import check_password
 from django.db import IntegrityError
@@ -11,8 +12,8 @@ import smtplib
 
 # Email setup
 def send_email(subject, message, recipient_email):
-    sender_email = 'rohitchauhan@gmail.com'  # Update with your Gmail email
-    sender_password = '################'  # Update with your Gmail password
+    sender_email = 'rohitchauhan9880@gmail.com'  # Update with your Gmail email
+    sender_password = 'hrkdsjslmpyevisg'  # Update with your Gmail password
 
     msg = MIMEMultipart()
     msg['From'] = sender_email
@@ -37,7 +38,8 @@ def about(request):
 
 
 def channel_video(request):
-    return render(request, 'your_video/index.html')
+    email = request.session.get('email', '')
+    return render(request, 'your_video/index.html', {'email': email})
 
 def community(request):
     return render(request, 'your_video/community.html')
@@ -61,8 +63,7 @@ def login_view(request):
             print(f"Password Match: {password_match}")
             if check_password(password, user.password):
                 request.session['email'] = user.email
-                request.session['name'] = user.name
-                return render(request, 'your_video/index.html', )  # Redirect to dashboard or another page
+                return redirect('create_channel.html', {'email': email})  # Redirect to dashboard or another page
             else:
                 error_message = "Incorrect email or password. Please try again."
                 print("Password did not match!")
@@ -106,7 +107,6 @@ def save_register(request):
                 error_message = "This email address is already registered."
         return render(request, 'register.html', {'error_message': error_message})
 
-
 def otp(request, email):
     if request.method == "POST":
         # Get OTP entered by the user
@@ -123,22 +123,28 @@ def otp(request, email):
     else:
         return render(request, 'otp.html')
     
-def create_chan(request):
-    return render(request, 'your_video/channel_create.html')
+def create_chan(request, email):
+    email = request.session.get('email', '')
+    return render(request, 'your_video/channel_create.html', {'email': email})
 
+# create Channel
 def create_channel(request, email):
+    session_email = request.session.get('email')
+    # Ensure the session email matches the provided email
+    if session_email != email:
+        return render(request, 'error.html', {'message': 'Email does not match'})
+    user = User.objects.get(email=email)
     if request.method == 'POST':
-        # Check if the user has a session key
-        if 'email' in request.session:
-            email = request.POST.get('email')
-            channel_name = request.session['name']
-            image = request.FILES.get('image')
-            channel = Channel(channel_name=channel_name, image=image, email=email)
-            channel.save
-            print("channel_save")
-            message = "Channel Create Successful"
-            return render(request, 'your_video/index.html', {'message' : message})
-        else:
-            return HttpResponseRedirect('login')
-    return render(request, 'your_video/channel_create.html')
-     
+        name = request.POST['name']
+        image = request.FILES['image']
+        channel = Channel(name=name, image=image)
+        channel.save
+        print("channel_save")
+        print("Channel Create Successful")
+        request.session['name'] = channel.name
+        return render(request, 'your_video/index.html')
+    return render(request, 'your_video/channel_create.html', {'email': email})
+            
+            
+    
+ 
