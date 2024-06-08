@@ -16,5 +16,6 @@ urlpatterns = [
     path('otp/<str:email>/', views.otp, name='otp'),
     path('create_channel/<str:email>/', views.create_channel, name='create_channel'),
     path('channel/<str:email>/', views.create_chan, name="create_chan"),
-   
+    
+    
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
