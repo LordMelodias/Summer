@@ -13,4 +13,5 @@ urlpatterns = [
     path("save_register", views.save_register, name='save_register'),
     path('otp/<str:email>/', views.otp, name='otp'),
     path('create_channel/<str:email>/', views.create_channel, name='create_channel'),
+    path('channel/<str:email>/', views.create_chan, name="create_chan"),
 ]
