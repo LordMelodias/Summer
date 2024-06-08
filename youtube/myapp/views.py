@@ -13,7 +13,7 @@ import smtplib
 # Email setup
 def send_email(subject, message, recipient_email):
     sender_email = 'rohitchauhan9880@gmail.com'  # Update with your Gmail email
-    sender_password = '##############'  # Update with your Gmail password
+    sender_password = 'hrkdsjslmpyevisg'  # Update with your Gmail password
 
     msg = MIMEMultipart()
     msg['From'] = sender_email
@@ -63,7 +63,7 @@ def login_view(request):
             print(f"Password Match: {password_match}")
             if check_password(password, user.password):
                 request.session['email'] = user.email
-                return redirect('create_channel.html', {'email': email})  # Redirect to dashboard or another page
+                return redirect('home')  # Redirect to dashboard or another page
             else:
                 error_message = "Incorrect email or password. Please try again."
                 print("Password did not match!")
@@ -129,20 +129,26 @@ def create_chan(request, email):
 
 # create Channel
 def create_channel(request, email):
-    session_email = request.session.get('email')
+    email = request.session.get('email')
     # Ensure the session email matches the provided email
-    if session_email != email:
+    if email != email:
         return render(request, 'error.html', {'message': 'Email does not match'})
     user = User.objects.get(email=email)
+    # Check if a channel already exists for the user
+    channel = Channel.objects.filter(user=user).first()
+    if channel:
+        request.session['name'] = channel.name
+        # If a channel already exists, redirect to the detail view
+        return redirect('channel_video')
     if request.method == 'POST':
         name = request.POST['name']
         image = request.FILES['image']
-        channel = Channel(name=name, image=image)
-        channel.save
+        channel = Channel(name=name, image=image, user=user)
+        channel.save()
         print("channel_save")
         print("Channel Create Successful")
         request.session['name'] = channel.name
-        return render(request, 'your_video/index.html')
+        return redirect('channel_video',)  # Redirect to a view showing the created channel
     return render(request, 'your_video/channel_create.html', {'email': email})
             
             
