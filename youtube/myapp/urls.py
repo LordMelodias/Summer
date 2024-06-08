@@ -1,5 +1,7 @@
-from django.urls import path, include
-from myapp import views
+from django.urls import path
+from appname import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("", views.home, name='home'),
@@ -14,4 +16,5 @@ urlpatterns = [
     path('otp/<str:email>/', views.otp, name='otp'),
     path('create_channel/<str:email>/', views.create_channel, name='create_channel'),
     path('channel/<str:email>/', views.create_chan, name="create_chan"),
-]
+   
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
