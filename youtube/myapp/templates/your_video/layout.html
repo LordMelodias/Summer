@@ -135,19 +135,30 @@
             <div class="videos">
 
                 <div class="channel-art">
-                    <img src="images/channel-art.jpg" alt="">
+                    <img src="{% static 'images/channel-art.jpg' %}" alt="">
                 </div>
                 <div class="channel-header flex">
                     <div class="channel-img-title flex">
-                        <img class="img" src="images/logo.jpg" alt="">
+                        <img class="img" src="{{ channel.image.url }}" alt="{{ channel.name }}">
                         <div class="channel-image-texts">
-                            <h4>Desphixs</h4>
-                            <span>2.46K subscribers</span>
+                            {% if request.session.email %}
+                            <h4>{{ request.session.name}}</h4>
+                            {% else %}
+                            <script>
+                                window.location.href = "{% url 'create_channel' email=email %}";
+                            </script>
+                        {% endif %}
+                            <span>{{ channel.subscribers}} subscribers</span>
                         </div>
                     </div>
                     <div class="channel-header-btns">
-                        <div><a href="" class="channel-join">Join</a></div>
-                        <div><a href="" class="channel-subscribe">Subscribe</a></div>
+                        {% if request.session.name %}
+                        <div><a href="#" class="channel-subscribe">Subscribe</a></div>
+                        {% else %}
+                        <script>
+                            window.location.href = "{% url 'create_channel' email=email %}";
+                        </script>
+                    {% endif %}
                     </div>
                 </div>
                 <div class="channel-header-links flex">
