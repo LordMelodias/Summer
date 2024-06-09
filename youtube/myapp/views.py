@@ -173,4 +173,8 @@ def upload_video(request):
         return redirect('channel_video')
     return render(request, 'your_video/video_upload.html')        
     
- 
+# video play 
+def play_video(request, name):
+    video = Video.objects.get(name=name)
+    video.name = video.name.replace(' ', '_')
+    return render(request, 'video.html', {'video': video})
