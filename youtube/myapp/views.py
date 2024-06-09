@@ -34,8 +34,14 @@ def send_email(subject, message, recipient_email):
 def home(request):
     return render(request, 'index.html')
 
-def about(request):
-    return render(request, 'your_video/about.html')
+def channel_video(request):
+    email = request.session.get('email')
+    user = get_object_or_404(User, email=email)
+    channel = get_object_or_404(Channel, user=user)
+    context = {
+        'channel': channel,
+    }
+    return render(request, 'your_video/index.html', context)
 
 
 def channel_video(request):
