@@ -22,11 +22,11 @@ class User(models.Model):
  
  
 class Video(models.Model):
-    title = models.CharField(max_length=30)
+    name = models.CharField(max_length=100)
     description = models.TextField(max_length=300)
-    path = models.CharField(max_length=60)
-    datetime = models.DateTimeField(blank=False, null=False) #todo: auto_now=True
+    video_file = video_file = models.FileField(upload_to='rework/appname/static/videos')
     user = models.ForeignKey('User', on_delete=models.CASCADE)
+    thumbnail = models.ImageField(upload_to='rework/appname/static/thumbnails')
     number_of_views = models.IntegerField(blank=True, default=0)
 
 class Comment(models.Model):
@@ -36,7 +36,7 @@ class Comment(models.Model):
     video = models.ForeignKey(Video, on_delete=models.CASCADE)
 
 class Channel(models.Model):
-    name = models.CharField(max_length=100, blank=False, null=False)
+    name = models.CharField(max_length=100, blank=False, null=False, primary_key=True)
     subscribers = models.IntegerField(default=0, blank=False, null=False)
     user = models.ForeignKey('User', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='rework/appname/static/channel')  # Directory to store images
@@ -57,3 +57,4 @@ class Video_View(models.Model):
 class Channel_Subscription(models.Model):
     user = models.ForeignKey('User', on_delete=models.CASCADE)
     channel = models.ForeignKey(Channel, on_delete=models.CASCADE)
+    email = models.EmailField()
