@@ -8,6 +8,7 @@ from django.db import IntegrityError
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import smtplib
+from django.shortcuts import render, get_object_or_404
 # Create your views here.
 
 # Email setup
@@ -151,6 +152,19 @@ def create_channel(request, email):
         return redirect('channel_video',)  # Redirect to a view showing the created channel
     return render(request, 'your_video/channel_create.html', {'email': email})
             
-            
+# Uploaded video
+def upload_video(request):
+    if request.method == 'POST':
+        email = request.session.get('email')
+        user = get_object_or_404(User, email=email)
+        video_name = request.POST.get('name')
+        video_description = request.POST.get('description')
+        video_file = request.FILES.get('video')
+        video_thumbnail = request.FILES.get('thumbnail')
+        video = Video.objects.create(name=video_name, description=video_description, video_file=video_file, thumbnail=video_thumbnail, user=user)
+        video.save()
+        print("Video Save")
+        return redirect('channel_video')
+    return render(request, 'your_video/video_upload.html')        
     
  
