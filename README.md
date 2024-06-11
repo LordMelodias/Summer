@@ -46,3 +46,6 @@ Admin can reject or accept the booking request. when admin accept or reject the 
 We Take GUI (youtube) and add our own logic to makeStream platform
 ![alt text](image-8.png)
 
+# Playing Video
+When we click on thumbnail image it play video
+![alt text](image-9.png)
