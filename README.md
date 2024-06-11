@@ -49,3 +49,7 @@ We Take GUI (youtube) and add our own logic to makeStream platform
 # Playing Video
 When we click on thumbnail image it play video
 ![alt text](image-9.png)
+
+# Your Video
+When you click on your video it give option like that
+![alt text](image-10.png)
