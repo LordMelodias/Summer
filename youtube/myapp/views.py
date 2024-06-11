@@ -8,6 +8,7 @@ from django.db import IntegrityError
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import smtplib
+from venv import logger
 from django.shortcuts import render, get_object_or_404
 # Create your views here.
 
