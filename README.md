@@ -42,5 +42,7 @@ Admin can reject or accept the booking request. when admin accept or reject the 
 ![alt text](image-7.png)
 
 
-#Video Stream Website( Like Youtube )
+# Video Stream Website( Like Youtube )
+We Take GUI (youtube) and add our own logic to makeStream platform
 ![alt text](image-8.png)
+
