@@ -26,6 +26,7 @@ class Video(models.Model):
     description = models.TextField(max_length=300)
     video_file = video_file = models.FileField(upload_to='rework/appname/static/videos')
     user = models.ForeignKey('User', on_delete=models.CASCADE)
+    channel_name = models.CharField(max_length=100)
     thumbnail = models.ImageField(upload_to='rework/appname/static/thumbnails')
     number_of_views = models.IntegerField(blank=True, default=0)
 
@@ -36,10 +37,17 @@ class Comment(models.Model):
     video = models.ForeignKey(Video, on_delete=models.CASCADE)
 
 class Channel(models.Model):
-    name = models.CharField(max_length=100, blank=False, null=False, primary_key=True)
+    name = models.CharField(max_length=100, blank=False, null=False)
     subscribers = models.IntegerField(default=0, blank=False, null=False)
+    email = models.EmailField(unique=True)
     user = models.ForeignKey('User', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='rework/appname/static/channel')  # Directory to store images
+    
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
 
 class Like(models.Model):
     user = models.ForeignKey('User', on_delete=models.CASCADE)
@@ -48,6 +56,7 @@ class Like(models.Model):
 class Dislike(models.Model):
     user = models.ForeignKey('User', on_delete=models.CASCADE)
     video = models.ForeignKey(Video, on_delete=models.CASCADE)
+    
 
 class Video_View(models.Model):
     user = models.ForeignKey('User', on_delete=models.CASCADE)
