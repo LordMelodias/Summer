@@ -34,10 +34,25 @@ def send_email(subject, message, recipient_email):
 def home(request):
     return render(request, 'index.html')
 
+d
 def channel_video(request):
     email = request.session.get('email')
-    user = get_object_or_404(User, email=email)
-    channel = get_object_or_404(Channel, user=user)
+    if not email:
+        logger.error("Email not found in session")
+        return redirect('login')  # Redirect to login if no email in session
+
+    try:
+        user = get_object_or_404(User, email=email)
+    except Exception as e:
+        logger.error(f"User with email {email} not found: {e}")
+        return redirect('register')  # Redirect to register if user not found
+
+    try:
+        channel = Channel.objects.get(user=user)
+    except Channel.DoesNotExist:
+        logger.info(f"Channel for user {email} not found, redirecting to channel creation page")
+        return render(request, 'your_video/channel_create.html', {'email': email})  # Render channel creation page if channel not found
+
     context = {
         'channel': channel,
     }
