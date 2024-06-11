@@ -136,44 +136,65 @@ def create_chan(request, email):
 
 # create Channel
 def create_channel(request, email):
-    email = request.session.get('email')
+    email = request.POST.get('email')
     # Ensure the session email matches the provided email
-    if email != email:
-        return render(request, 'error.html', {'message': 'Email does not match'})
-    user = User.objects.get(email=email)
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        return render(request, 'error.html', {'message': 'User does not exist'})
+
     # Check if a channel already exists for the user
     channel = Channel.objects.filter(user=user).first()
     if channel:
         request.session['name'] = channel.name
         # If a channel already exists, redirect to the detail view
         return redirect('channel_video')
+
     if request.method == 'POST':
-        name = request.POST['name']
-        image = request.FILES['image']
-        channel = Channel(name=name, image=image, user=user)
-        channel.save()
-        print("channel_save")
-        print("Channel Create Successful")
-        request.session['name'] = channel.name
-        return redirect('channel_video',)  # Redirect to a view showing the created channel
-    return render(request, 'your_video/channel_create.html', {'email': email})
+        name = request.POST.get('name')
+        image = request.FILES.get('image')
+        try:
+            channel = Channel(name=name, image=image, user=user)
+            channel.save()
+            request.session['name'] = channel.name
+            return redirect('channel_video')  # Redirect to a view showing the created channel
+        except IntegrityError as e:
+            # Handle duplicate key error or other integrity errors
+            return render(request, 'error.html', {'message': 'A channel with this email already exists or other integrity error'})           
             
 # Uploaded video
 def upload_video(request):
     if request.method == 'POST':
+        # Get the email from the session
         email = request.session.get('email')
+        
+        # Retrieve the user object based on the email
         user = get_object_or_404(User, email=email)
+        # Extract data from the request
         video_name = request.POST.get('name')
         video_description = request.POST.get('description')
         video_file = request.FILES.get('video')
         video_thumbnail = request.FILES.get('thumbnail')
-        video = Video.objects.create(name=video_name, description=video_description, video_file=video_file, thumbnail=video_thumbnail, user=user)
+        channel_name = request.POST.get('channel_name')
+        
+        # Get or create the channel object
+        
+        # Create the video object and associate it with the user and channel
+        video = Video.objects.create(
+            name=video_name,
+            description=video_description,
+            video_file=video_file,
+            thumbnail=video_thumbnail,
+            user=user,
+            channel_name=channel_name
+        )
         video.save()
-        print("Video Save")
+        # Redirect to the channel_video view after successful upload
         return redirect('channel_video')
-    return render(request, 'your_video/video_upload.html')        
     
-# video play 
+    # Render the upload form for GET requests
+    return render(request, 'your_video/video_upload.html')
+
 def play_video(request, name):
     video = Video.objects.get(name=name)
     video.name = video.name.replace(' ', '_')
