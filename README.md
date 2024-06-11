@@ -40,3 +40,7 @@ It helps the admin to edit or delete the uploaded plans
 # Booking Status package for admin 
 Admin can reject or accept the booking request. when admin accept or reject the request the user will the mail.
 ![alt text](image-7.png)
+
+
+#Video Stream Website( Like Youtube )
+![alt text](image-8.png)
