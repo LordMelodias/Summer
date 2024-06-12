@@ -2,113 +2,42 @@
 {% load static %}
 {% block body %}
 
-    <div class="videos__container">
-        <!-- Single Video Starts Here -->
-        <div class="video">
+<div class="videos__container">
+    <!-- Single Video Starts Here -->
+    {% for video in video %}
+    <div class="video">
+        <a href="{% url 'play_video' video.name %}"> <!-- Add a link around the thumbnail image -->
             <div class="video__thumbnail">
-                <img src="images/1.jpg" alt="">
+                <img src="{{ video.thumbnail.url }}" alt="">
             </div>
-            <div class="video__details">
-                <div class="author">
-                    <img src="images/logo.jpg" alt="">
-                </div>
-                <div class="title">
-                    <h3>Youtube Clone Using HTML, CSS and JS</h3>
-                    <a href=""><small>Desphixs <i class="fas fa-check-circle"></i></small></a>
-                    <span><small>1M Views . 1 Months Ago</small></span>
-                </div>
+        </a>
+        <div class="video__details">
+            <div class="author">
+                <!-- Video element initially hidden -->
+                <video src="{{ video.video_file.url }}" controls style="display: none;"></video>
+            </div>
+            <div class="title">
+                <h3>{{ video.name }}</h3>
+                <a href=""><small>{{ video.channel_name }} <i class="fas fa-check-circle"></i></small></a>
+                <span><small>1M Views . 1 Months Ago</small></span>
             </div>
         </div>
-
-        <!-- Single Video Starts Here -->
-        <div class="video">
-            <div class="video__thumbnail">
-                <img src="images/1.jpg" alt="">
-            </div>
-            <div class="video__details">
-                <div class="author">
-                    <img src="images/logo.jpg" alt="">
-                </div>
-                <div class="title">
-                    <h3>Youtube Clone Using HTML, CSS and JS</h3>
-                    <a href=""><small>Desphixs <i class="fas fa-check-circle"></i></small></a>
-                    <span><small>1M Views . 1 Months Ago</small></span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Single Video Starts Here -->
-        <div class="video">
-            <div class="video__thumbnail">
-                <img src="images/1.jpg" alt="">
-            </div>
-            <div class="video__details">
-                <div class="author">
-                    <img src="images/logo.jpg" alt="">
-                </div>
-                <div class="title">
-                    <h3>Youtube Clone Using HTML, CSS and JS</h3>
-                    <a href=""><small>Desphixs <i class="fas fa-check-circle"></i></small></a>
-                    <span><small>1M Views . 1 Months Ago</small></span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Single Video Starts Here -->
-        <div class="video">
-            <div class="video__thumbnail">
-                <img src="images/1.jpg" alt="">
-            </div>
-            <div class="video__details">
-                <div class="author">
-                    <img src="images/logo.jpg" alt="">
-                </div>
-                <div class="title">
-                    <h3>Youtube Clone Using HTML, CSS and JS</h3>
-                    <a href=""><small>Desphixs <i class="fas fa-check-circle"></i></small></a>
-                    <span><small>1M Views . 1 Months Ago</small></span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Single Video Starts Here -->
-        <div class="video">
-            <div class="video__thumbnail">
-                <img src="images/1.jpg" alt="">
-            </div>
-            <div class="video__details">
-                <div class="author">
-                    <img src="images/logo.jpg" alt="">
-                </div>
-                <div class="title">
-                    <h3>Youtube Clone Using HTML, CSS and JS</h3>
-                    <a href=""><small>Desphixs <i class="fas fa-check-circle"></i></small></a>
-                    <span><small>1M Views . 1 Months Ago</small></span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Single Video Starts Here -->
-        <div class="video">
-            <div class="video__thumbnail">
-                <img src="images/1.jpg" alt="">
-            </div>
-            <div class="video__details">
-                <div class="author">
-                    <img src="images/logo.jpg" alt="">
-                </div>
-                <div class="title">
-                    <h3>Youtube Clone Using HTML, CSS and JS</h3>
-                    <a href=""><small>Desphixs <i class="fas fa-check-circle"></i></small></a>
-                    <span><small>1M Views . 1 Months Ago</small></span>
-                </div>
-            </div>
-        </div>
-
-        
-
-
     </div>
+    {% endfor %}
 </div>
+
+<script>
+    function toggleVideo(thumbnail) {
+        // Find the video element within the same parent div
+        var video = thumbnail.nextElementSibling.querySelector('video');
+
+        // Toggle the display style of the video element
+        if (video.style.display === 'none') {
+            video.style.display = 'block';
+        } else {
+            video.style.display = 'none';
+        }
+    }
+</script>
 
 {% endblock body %}
