@@ -211,6 +211,15 @@ def upload_video(request):
     return render(request, 'your_video/video_upload.html')
 
 def play_video(request, name):
+    email = request.session.get('email')
+    user = get_object_or_404(User, email=email)
+    channel = Channel.objects.get(user=user)
     video = Video.objects.get(name=name)
     video.name = video.name.replace(' ', '_')
-    return render(request, 'video.html', {'video': video})
+    all_videos = Video.objects.all()
+    context = {
+        'channel': channel,
+        'video': video,
+        'all_videos': all_videos,
+    }
+    return render(request, 'video.html', context)
