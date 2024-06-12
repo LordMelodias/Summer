@@ -59,9 +59,16 @@ def channel_video(request):
     return render(request, 'your_video/index.html', context)
 
 
-def channel_video(request):
-    email = request.session.get('email', '')
-    return render(request, 'your_video/index.html', {'email': email})
+def video(request):
+    email = request.session.get('email')
+    user = get_object_or_404(User, email=email)
+    channel = Channel.objects.get(user=user)
+    video = Video.objects.filter(channel_name=channel.name).order_by('-upload_date')  # Order by upload date
+    context = {
+        'channel': channel,
+        'video': video,
+    }
+    return render(request, 'your_video/video.html',  context)
 
 def community(request):
     return render(request, 'your_video/community.html')
