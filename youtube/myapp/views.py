@@ -59,6 +59,13 @@ def channel_video(request):
     return render(request, 'your_video/index.html', context)
 
 
+def channel_video(request):
+    email = request.session.get('email', '')
+    return render(request, 'your_video/index.html', {'email': email})
+
+def community(request):
+    return render(request, 'your_video/community.html')
+
 def video(request):
     email = request.session.get('email')
     user = get_object_or_404(User, email=email)
@@ -69,12 +76,6 @@ def video(request):
         'video': video,
     }
     return render(request, 'your_video/video.html',  context)
-
-def community(request):
-    return render(request, 'your_video/community.html')
-
-def video(request):
-    return render(request, 'your_video/video.html')
 
 def login(request):
     return render(request, 'login.html')
