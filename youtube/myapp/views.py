@@ -64,9 +64,9 @@ def channel_video(request):
     return render(request, 'your_video/index.html', context)
 
 
-def channel_video(request):
-    email = request.session.get('email', '')
-    return render(request, 'your_video/index.html', {'email': email})
+def about(request):
+    return render(request, 'your_video/about.html')
+
 
 def community(request):
     return render(request, 'your_video/community.html')
