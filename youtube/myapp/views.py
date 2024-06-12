@@ -35,7 +35,6 @@ def send_email(subject, message, recipient_email):
 def home(request):
     return render(request, 'index.html')
 
-d
 def channel_video(request):
     email = request.session.get('email')
     if not email:
