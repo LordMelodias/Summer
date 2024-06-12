@@ -49,12 +49,17 @@ def channel_video(request):
 
     try:
         channel = Channel.objects.get(user=user)
+        request.session['name'] = channel.name
     except Channel.DoesNotExist:
         logger.info(f"Channel for user {email} not found, redirecting to channel creation page")
         return render(request, 'your_video/channel_create.html', {'email': email})  # Render channel creation page if channel not found
-
+     
+    video = Video.objects.filter(channel_name=channel.name).order_by('-upload_date')  # Order by upload date
+    latest_video = video.first()
     context = {
         'channel': channel,
+        'latest_video': latest_video,
+        'video': video,
     }
     return render(request, 'your_video/index.html', context)
 
