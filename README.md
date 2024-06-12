@@ -53,3 +53,7 @@ When we click on thumbnail image it play video
 # Your Video
 When you click on your video it give option like that
 ![alt text](image-10.png)
+
+# Video Upload Form
+When User Upload video we take user channel name and user email as a session
+![alt text](image-11.png)
