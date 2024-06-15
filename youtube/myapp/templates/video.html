@@ -178,17 +178,22 @@
 
                     <div class="details flex border_bottom">
                         <div class="img">
-                            <img src="images/logo.jpg" alt="">
+                            <img src="{{ channel.image.url }}" alt="{{ channel.name }}">
                         </div>
                         <div class="heading">
-                            <h4>Desphixs <small><i class="fa fa-check-circle"></i></small> </h4>
-                            <span>2.4K Subscribers</span>
+                            <h4>{{ video.channel_name }} <small><i class="fa fa-check-circle"></i></small> </h4>
+                            <span>4k Subscribers</span>
 
                             <h5>{{ video.description }}</h5>
                             <span> <i class="fa fa-caret-down"></i> show more</span>
                         </div>
                         <div>
-                            <a href="" class="subscribe-btn">Subscribe</a>
+                            <form  id="subscribeForm" action="{% url 'subscribe_channel' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="name" value="{{ video.channel_name }}">
+                                <input type="hidden" name="email" value="{{ request.session.email}}">
+                                <input type="submit" class="subscribe-btn" value="Subscribe">
+                            </form>
                         </div>
                     </div>
 
@@ -196,42 +201,34 @@
                 </div>
             </div>
 
+            
             <div class="right">
                 <div class="right_content">
                     
-
+                    {% for vid in same_channel_videos %}
                     <div class="video_items vide_sidebar flex">
-                        <a href="">
-                            <img src="images/1.jpg" alt="">
+                        <a href="{% url 'play_video' name=vid.name %}">
+                            <img src="{{ vid.thumbnail.url }}" alt="Thumbnail for {{ vid.name }}">
                         </a>
                         <div class="details">
-                            <p>Youtube CLone using HTML, CSS and JS</p>
-                            <span>Desphixs <i class="fa fa-check-circle"></i></span>
+                            <p>{{ vid.name }}</p>
                             <span>203K Views . 1 Week Ago </span>
                         </div>
                     </div>
+                    {% endfor %}
 
+                    {% for vid in different_channel_videos %}
                     <div class="video_items vide_sidebar flex">
-                        <a href="">
-                            <img src="images/1.jpg" alt="">
+                        <a href="{% url 'play_video' name=vid.name %}">
+                            <img src="{{ vid.thumbnail.url }}" alt="Thumbnail for {{ vid.name }}">
                         </a>
                         <div class="details">
-                            <p>Youtube CLone using HTML, CSS and JS</p>
-                            <span>Desphixs <i class="fa fa-check-circle"></i></span>
+                            <p>{{ vid.name }}</p>
                             <span>203K Views . 1 Week Ago </span>
                         </div>
                     </div>
+                    {% endfor %}
 
-                    <div class="video_items vide_sidebar flex">
-                        <a href="">
-                            <img src="images/1.jpg" alt="">
-                        </a>
-                        <div class="details">
-                            <p>Youtube CLone using HTML, CSS and JS</p>
-                            <span>Desphixs <i class="fa fa-check-circle"></i></span>
-                            <span>203K Views . 1 Week Ago </span>
-                        </div>
-                    </div>
                     
                 </div>
             </div>
@@ -245,6 +242,31 @@
         $(document).ready(function() {
             $('#menu').on('click', function() {
                 $('.sidebar').toggleClass('visible');
+            });
+        });
+        document.getElementById('subscribeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            
+            fetch("{% url 'subscribe_channel' %}", {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'subscribed') {
+                    alert('Subscribed successfully! Subscribers: ' + data.subscribers);
+                } else if (data.status === 'already_subscribed') {
+                    alert('You are already subscribed.');
+                } else {
+                    alert('An error occurred.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
             });
         });
     </script>
