@@ -16,6 +16,13 @@ urlpatterns = [
     path('otp/<str:email>/', views.otp, name='otp'),
     path('create_channel/<str:email>/', views.create_channel, name='create_channel'),
     path('channel/<str:email>/', views.create_chan, name="create_chan"),
+    path('upload_video', views.upload_video, name='upload_video'),
+    path('play_video/<str:name>/', views.play_video, name='play_video'),
+    path('subscribe_channel', views.subscribe_channel, name='subscribe_channel'),
     
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
