@@ -236,3 +236,23 @@ def play_video(request, name):
         'all_videos': all_videos,
     }
     return render(request, 'video.html', context)
+
+def subscribe_channel(request):
+    if request.method == 'POST':
+        email = request.session.get('email')
+        name = request.POST.get('name')
+        
+        # Get the user object or return 404 if not found
+        user = get_object_or_404(User, email=email)
+        # Get the channel object or return 404 if not found
+        channel = get_object_or_404(Channel, name=name)
+
+        # Check if the user is already subscribed to the channel
+        channel.subscribers += 1
+        channel.save()
+        print("Subscriber count updated")
+
+        return render(request, 'index.html', {'channel': channel})
+    else:
+        # Handle GET requests if needed
+        return HttpResponse("Method not allowed", status=405)
